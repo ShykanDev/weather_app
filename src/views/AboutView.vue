@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-slate-50 min-h-dvh">
+  <div class="bg-gradient-to-b from-indigo-100 to-blue-200 min-h-dvh">
     <!-- Date -->
     <div class="pt-4 text-2xl font-poppins">
       <h1>{{ date }}</h1>
