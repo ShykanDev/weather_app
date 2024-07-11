@@ -1,7 +1,6 @@
 import { ref } from "vue";
 
 class WeatherService {
-
     private current;
     private forecast;
     private autocomplete;
@@ -23,9 +22,6 @@ class WeatherService {
     }
     getAutocomplete(){
         return this.autocomplete;
-    }
-    getAForecast(){
-        return this.forecast;
     }
     getFuture(){
         return this.future;
@@ -56,6 +52,16 @@ class WeatherService {
     }
    }
 
+   async fetchForecast(api_key:string,id:number, days=1, aqi='no', alerts='no'){
+    try {
+        const url =`http://api.weatherapi.com/v1/forecast.json?key=${api_key}&q=id:${id}&days=${days}&aqui=${aqi}&alerts=${alerts}`
+        const res = await fetch(url);
+        const json = await res.json();
+        this.forecast.value = json;
+    } catch (error) {
+        console.log(`Error retrieving forecast weather ${error}`);
+    }
+   }
 }
 
 
