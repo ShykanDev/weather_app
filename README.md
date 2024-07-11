@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # minimal_chat
 
 ## Project setup
@@ -44,4 +44,4 @@ Contributions welcome!
 
 License:
 MIT
->>>>>>> cb59acf2d0f6c6d1967f6d20fd36baf2829b6d88
+
