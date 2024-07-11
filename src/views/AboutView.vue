@@ -5,8 +5,8 @@
       <h1>{{ date }}</h1>
     </div>
     <!-- Search Bar -->
-    <div class="mt-5">
-      <input v-model="query" @input="handleQuery"
+    <div  class="mt-5">
+      <input v-on:blur="handleBlur" @click="handleQuery" v-model="query" @input="handleQuery"
         class="w-2/4 p-1 duration-500 shadow-md min-h-11 rounded-xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none "
         type="text" placeholder="New York">
     </div>
@@ -56,9 +56,11 @@ const handleQuery = () => {
       await weatherService.fetchAutocomplete(api_key.value, query.value);
       const finalData = weatherService.getAutocomplete();
       (query.value.length >= 1) ? responseAutoComplete.value = finalData.value : responseAutoComplete.value = [];
-    }, 600)
+    }, 400)
   }
 }
+// when user blur the input it will hide the list of cards
+const handleBlur = () => responseAutoComplete.value = []
 
 // importing weather store
 import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore';
