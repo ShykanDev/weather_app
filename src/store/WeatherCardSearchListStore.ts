@@ -7,8 +7,11 @@ export const WeatherCardSearchListStore = defineStore("weatherCardSearchList", {
        }    
    },
     actions: {
-        addCard(item: any) {
+        addCard(item: any):void{
             this.weatherCardSearchList.push(item)
+        },
+        deleteAllCardsList():void{
+            this.weatherCardSearchList = []
         }
     },
     getters:{

@@ -17,7 +17,11 @@
         :country="data.country" :region="data.region"> </AutoCompleteCard>
     </div>
     <!-- List of Weather Cards -->
-    <WeatherCard />
+     <div v-for="card in weatherCardsList" :key="card.id">
+       <WeatherCard />
+     </div>
+     <!-- temp button fot testing delete all cards -->
+      <button @click="deleteAllCards">Delete</button>
   </div>
 </template>
 
@@ -26,7 +30,7 @@ import AutoCompleteCard from '@/components/AutoCompleteCard.vue';
 import IAutocompleteCountry from '@/Interfaces/IAutoCompleteCountry';
 import WeatherService from '@/services/WeatherService';
 import WeatherCard from '@/components/WeatherCard.vue';
-import { Ref, ref } from 'vue';
+import { computed, Ref, ref } from 'vue';
 
 // api key
 const api_key = ref('258e43a114834b64b6f23707241007');
@@ -60,7 +64,8 @@ const handleQuery = () => {
   }
 }
 // when user blur the input it will hide the list of cards
-const handleBlur = () => responseAutoComplete.value = []
+const handleBlur = () => console.log("blur trigger");
+
 
 // importing weather store
 import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore';
@@ -71,12 +76,21 @@ const storeWeatherSearchList = WeatherCardSearchListStore();
 // When the user clicks on the card it will show the id of the country
 const handleCardClick = (data: object) => {
   if (data) {
+    console.log(data);
     storeWeatherSearchList.addCard(data)
     query.value = ""
     responseAutoComplete.value = []
   }
 }
 
+// list of weather cards when user click on query result
+const weatherCardsList = computed(() => storeWeatherSearchList.getWeatherCardSearchList);
+console.log(weatherCardsList);
+
+// delete all cards
+const deleteAllCards = () => {
+  storeWeatherSearchList.deleteAllCardsList();
+}
 
 
 
