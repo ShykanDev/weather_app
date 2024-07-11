@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-slate-100 min-h-dvh">
+  <div class="bg-slate-50 min-h-dvh">
     <!-- Date -->
     <div class="pt-4 text-2xl font-poppins">
       <h1>{{ date }}</h1>
@@ -17,7 +17,7 @@
         :country="data.country" :region="data.region"> </AutoCompleteCard>
     </div>
     <!-- List of Weather Cards -->
-     
+    <WeatherCard />
   </div>
 </template>
 
@@ -25,6 +25,7 @@
 import AutoCompleteCard from '@/components/AutoCompleteCard.vue';
 import IAutocompleteCountry from '@/Interfaces/IAutoCompleteCountry';
 import WeatherService from '@/services/WeatherService';
+import WeatherCard from '@/components/WeatherCard.vue';
 import { Ref, ref } from 'vue';
 
 // api key
@@ -49,12 +50,12 @@ let responseAutoComplete: Ref<Array<IAutocompleteCountry>> = ref([]);
 
 // When the user types in the search bar it will run the fetchAutocomplete function to get the results from the api and display them in the card component
 const handleQuery = () => {
-  if (query.value !="") {
+  if (query.value != "") {
     clearTimeout(timeout)
     timeout = setTimeout(async () => {
       await weatherService.fetchAutocomplete(api_key.value, query.value);
       const finalData = weatherService.getAutocomplete();
-     (query.value.length >= 1) ? responseAutoComplete.value = finalData.value : responseAutoComplete.value = [];
+      (query.value.length >= 1) ? responseAutoComplete.value = finalData.value : responseAutoComplete.value = [];
     }, 600)
   }
 }
@@ -66,11 +67,11 @@ import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore';
 const storeWeatherSearchList = WeatherCardSearchListStore();
 
 // When the user clicks on the card it will show the id of the country
-const handleCardClick = (data: object) =>{
-  if (data){
-  storeWeatherSearchList.addCard(data)
-  query.value = ""
-  responseAutoComplete.value = []
+const handleCardClick = (data: object) => {
+  if (data) {
+    storeWeatherSearchList.addCard(data)
+    query.value = ""
+    responseAutoComplete.value = []
   }
 }
 
