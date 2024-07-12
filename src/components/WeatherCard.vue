@@ -39,16 +39,11 @@ const props = defineProps({
     }
 })
 
-const getLargeIconUrl = (iconUrl: string) => iconUrl.replace("64x64", "128x128"); 
+const getLargeIconUrl = (iconUrl: string) => iconUrl.replace("64x64", "128x128"); // Function to get the large icon url from the small icon url
 
-let toggleMoreInfo = ref(false);
+let toggleMoreInfo = ref(false); // Variable to show or hide MoreInfoCard component
 
-// open more info
-const openMoreInfo = () => {
-    toggleMoreInfo.value = !toggleMoreInfo.value
-    console.log(toggleMoreInfo.value);
-};
-
+const openMoreInfo = () => toggleMoreInfo.value = !toggleMoreInfo.value; // Function to open or close MoreInfoCard component based on the click on DotMenu
 </script>
 
 <style scoped></style>

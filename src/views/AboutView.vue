@@ -4,16 +4,16 @@
     <h2 class="fixed bottom-0 right-0 z-30 inline-block pl-2 pr-2 mb-2 mr-3 rounded-full bg-slate-700 text-slate-100 ">{{ time }}</h2>
     <!-- Search Bar -->
     <div  class="mt-5">
-      <input v-on:blur="handleBlur" @click="handleQuery" v-model="query" @input="handleQuery"
+      <input  @click="handleQuery" v-model="query" @input="handleQuery"
       class="w-5/6 p-1 text-2xl text-center duration-500 shadow-md min-h-16 rounded-3xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none "
-      type="text" placeholder="New York">
+      type="text" :placeholder="placeholderValue">
     </div>
     <!-- Loader Circle -->
     <div v-if="isLoading" class="flex justify-center mt-4">
       <LoaderCircle />
     </div>
-    <!-- Weather Card -->
-    <div v-for="data in responseAutoComplete" :key="data.id">
+    <!-- Autocomlete List Cards -->
+    <div  v-for="data in responseAutoComplete" :key="data.id">
       <AutoCompleteCard @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name" :country="data.country" :region="data.region"/>
   </div>
   <!-- List of Weather Cards -->
@@ -27,12 +27,13 @@ import IAutocompleteCountry from '@/Interfaces/IAutoCompleteCountry';
 import WeatherService from '@/services/WeatherService';
 import WeatherCard from '@/components/WeatherCard.vue';
 import LoaderCircle from '@/components/LoaderCircle.vue';
-import { computed, Ref, ref } from 'vue';
+import { computed, onMounted, Ref, ref } from 'vue';
 import HeaderBar from '@/components/HeaderBar.vue';
+import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore'; 
+import { LaIglooSolid } from 'oh-vue-icons/icons';
 
-// Api Stuff
-const api_key = ref('258e43a114834b64b6f23707241007');
-const weatherService = new WeatherService();
+const api_key = ref('258e43a114834b64b6f23707241007'); // API Key for the weather api
+const weatherService = new WeatherService(); // instance of the weather service class
 
 const date = new Date().toLocaleString('en-us', { dateStyle: 'full' }); // date to show at the top of the page
 
@@ -58,9 +59,6 @@ const handleQuery = () => {
     }, 400)
   }
 }
-const handleBlur = () => console.log("blur trigger"); // when user blur the input it will hide the list of cards
-
-import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore'; // importing weather store
 
 const storeWeatherSearchList = WeatherCardSearchListStore(); // WeatherCardSearchListStore
 
@@ -69,6 +67,7 @@ const handleCardClick = async(id: number) => { // Handle fetching and storing we
   isLoading.value = true; // Set the loader variable to true to show the loader until the data is fetched
   if (id) {
     try {
+      console.log(id);
       responseAutoComplete.value = [] // Clear the responseAutoComplete value when a new card is clicked
       query.value = "" // Clear the query value
       await weatherService.fetchForecast(api_key.value, id) // Fetch the forecast data for the clicked card
@@ -83,6 +82,25 @@ const handleCardClick = async(id: number) => { // Handle fetching and storing we
 
 // list of weather cards when user click on query result
 const weatherCardsList = computed(() => storeWeatherSearchList.getWeatherCardSearchList.slice().reverse());
+let placeholderValue = ref('');
+const initialPlaces = ref(['Paris', 'Colombia', 'Tokyo', 'Mexico City', 'London', 'Rio de Janeiro']);
+const initialPlacesId = ref([803267, 502209, 3125553, 3247379,2801268,287907]); //same places but these values are their respective id
+
+const addInitialCards = () => {
+    for (let i = 0; i < initialPlacesId.value.length; i++) {
+        setTimeout((index:number) => {
+            handleCardClick(initialPlacesId.value[index]);
+            placeholderValue.value = initialPlaces.value[index];
+        }, 1900 * i, i);
+    }
+    setTimeout(() => {
+        placeholderValue.value = 'Search place...'; // Esto se ejecutará después de los setTimeout
+    }, 1900 * initialPlacesId.value.length); // Asegúrate de que esto se ejecute después de todos los setTimeout
+}
+
+
+addInitialCards()
+
 </script>
 
 <style scoped>

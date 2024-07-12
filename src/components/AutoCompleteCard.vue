@@ -1,7 +1,7 @@
 <template>
     <div class="flex justify-center cursor-pointer ">
         <div class="flex items-center w-11/12 p-1 transition-colors duration-100 ease-out bg-white rounded-b-sm shadow-md hover: text-sky-600 hover:text-white hover:bg-blue-500 ">
-            <h2 class="text-xl font-poppins" >{{ props.name }}, {{ props.region }}, {{props.country}}</h2>
+            <h2 class="text-xl font-poppins"><v-icon scale="1.5" name="md-locationon-twotone" /> {{ props.name }} {{ props.region }}, {{props.country}}</h2>
         </div>
     </div>
 </template>
