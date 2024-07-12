@@ -10,6 +10,9 @@ export const WeatherCardSearchListStore = defineStore("weatherCardSearchList", {
         addCard(item: any):void{
             this.weatherCardSearchList.push(item)
         },
+        deleteCard(item: any):void{
+            this.weatherCardSearchList.slice(this.weatherCardSearchList.indexOf(item), 1);
+        },
         deleteAllCardsList():void{
             this.weatherCardSearchList = []
         }

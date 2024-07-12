@@ -1,38 +1,57 @@
 <template>
     <div class="flex justify-center w-full mt-5 mb-5 bg-transparent">
-        <div class="w-11/12 pt-4 overflow-auto bg-white shadow-2xl bg-opacity-55 min-w-8 rounded-2xl font-poppins backdrop-blur-md ">
+            <div class="relative w-11/12 pt-4 overflow-auto bg-white bg-opacity-25 shadow-2xl min-w-8 rounded-2xl font-poppins backdrop-blur-sm bself-end">
+            <!-- container city name and country -->
             <div class="flex justify-around ">
                 <h2>{{props.weatherInfo.location.name}}</h2>
                 <h3>{{ props.weatherInfo.location.country}}</h3>
             </div>
-            <div class="flex justify-evenly">
-                <div class="flex items-center ">
-                    <img class="min-w-11" :src="props.weatherInfo.current.condition.icon">
+            <!-- container current weather -->
+                <div class="flex flex-wrap items-center justify-evenly">
+                    <img class="self-start w-20" :src="getLargeIconUrl(props.weatherInfo.current.condition.icon)">
+                    <h3 class="text-[40px] font-medium ">{{ props.weatherInfo.current.temp_c }}°</h3>
+                    <h3 class="pl-1 pr-1 mr-1 text-white bg-sky-700 rounded-2xl ">{{ props.weatherInfo.current.condition.text }}</h3>
                 </div>
               <div>
-                <div class="flex items-center justify-between gap-3 ">
-                    <h3 class="text-[40px] font-medium ">{{ props.weatherInfo.current.temp_c }}°</h3>
-                    <h3 class="pl-1 pr-1 text-white bg-orange-500 rounded-2xl whitespace-nowrap">{{ props.weatherInfo.current.condition.text }}</h3>
-                </div>
-                <div class="flex items-center ">
-                    <h3 class="font-bold">Wind: {{ props.weatherInfo.current.wind_kph }}</h3>
-                    <div class="w-[2px] h-[14px] mr-1 ml-1 bg-orange-500"></div>
-                    <h3>Humidity: {{ props.weatherInfo.current.humidity }}</h3>
-                </div>
-              </div>
+                <!-- final container -->
             </div>
+                <div class="relative flex items-center justify-center ">
+                    <h3>Max: {{ props.weatherInfo.forecast.forecastday[0].day.maxtemp_c }}°</h3><v-icon scale="1.3" name="io-trending-up" />
+                    <v-icon scale="1.3" name="la-grip-lines-vertical-solid" />
+                    <h3 class=""><v-icon scale="1.3" name="io-trending-down" />Min: {{ props.weatherInfo.forecast.forecastday[0].day.mintemp_c}}°</h3>
+                    <div @click="openMoreInfo" class="absolute bottom-0 right-0 z-40" > <DotMenu  /> </div>
+                    <!-- <v-icon @click="openMoreInfo" class="absolute bottom-1 2 right-1" scale="1.3" name="md-morevert" /> -->
+                </div>
+            <MoreInfoCard class="transition-opacity duration-300 ease-out" :weatherInfo="props.weatherInfo" :style="toggleMoreInfo ? 'opacity:1' : 'opacity:0'" /> 
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from 'vue';
+import { defineProps, ref } from 'vue';
+import MoreInfoCard from '@/components/MoreInfoCard.vue'
+import DotMenu from './DotMenu.vue';
+
 const props = defineProps({
     weatherInfo:{
         required:true,
         type:Object
     }
 })
+
+const getLargeIconUrl = (iconUrl: string) => {
+    // Example: assuming iconUrl is like "https://example.com/icon.png"
+    // Replace "64x64" with a larger size if available, or manipulate the URL as needed
+    return iconUrl.replace("64x64", "128x128");
+};
+
+let toggleMoreInfo = ref(false);
+
+// open more info
+const openMoreInfo = () => {
+    toggleMoreInfo.value = !toggleMoreInfo.value
+    console.log(toggleMoreInfo.value);
+};
 
 </script>
 

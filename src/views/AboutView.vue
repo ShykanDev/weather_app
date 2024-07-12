@@ -1,27 +1,25 @@
 <template>
-  <div class="bg-gradient-to-b from-indigo-100 to-blue-200 min-h-dvh">
-    <!-- Date -->
-    <div class="pt-4 text-2xl font-poppins">
-      <h1>{{ date }}</h1>
-    </div>
+  <div class="bg-gradient-to-b from-sky-50 to-slate-50 min-h-dvh">
+    <HeaderBar/>
+    <h2 class="fixed bottom-0 right-0 z-30 inline-block pl-2 pr-2 mb-2 mr-3 rounded-full bg-slate-700 text-slate-100 ">{{ time }}</h2>
     <!-- Search Bar -->
     <div  class="mt-5">
       <input v-on:blur="handleBlur" @click="handleQuery" v-model="query" @input="handleQuery"
-        class="w-2/4 p-1 duration-500 shadow-md min-h-11 rounded-xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none "
+        class="w-5/6 p-1 text-2xl duration-500 shadow-md min-h-16 rounded-3xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none "
         type="text" placeholder="New York">
     </div>
     <!-- Weather Card -->
     <div v-for="data in responseAutoComplete" :key="data.id">
-      <!-- CardComponent -->
-      <AutoCompleteCard @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name"
-        :country="data.country" :region="data.region"> </AutoCompleteCard>
+      <AutoCompleteCard @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name" :country="data.country" :region="data.region"/>
+  </div>
+  <!-- List of Weather Cards -->
+  <TransitionGroup name="slide-fade" tag="div">
+    <div v-for="card in weatherCardsList" :key="card">
+      <WeatherCard :weatherInfo="card" />
     </div>
-    <!-- List of Weather Cards -->
-     <div v-for="card in weatherCardsList" :key="card.id">
-       <WeatherCard :weatherInfo="card" />
-     </div>
+  </TransitionGroup>
      <!-- temp button fot testing delete all cards -->
-      <button class="pl-2 pr-2 text-white bg-red-500 rounded-3xl font-poppins" @click="deleteAllCards ">Delete all cards </button>
+      <button class="pl-2 pr-2 mt-4 text-white bg-red-500 rounded-3xl font-poppins" @click="deleteAllCards ">Borrar todas las tarjetas</button>
   </div>
 </template>
 
@@ -38,6 +36,9 @@ const weatherService = new WeatherService();
 
 // date to show at the top of the page
 const date = new Date().toLocaleString('en-us', { dateStyle: 'full' });
+
+// time to show at the top of the page only showing hours and minutes and not pm or am
+const time = new Date().toLocaleTimeString('en-us', { timeStyle: 'short' });
 
 // user query value
 const query = ref('');
@@ -67,6 +68,7 @@ const handleBlur = () => console.log("blur trigger");
 
 // importing weather store
 import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore';
+import HeaderBar from '@/components/HeaderBar.vue';
 
 // WeatherCardSearchListStore
 const storeWeatherSearchList = WeatherCardSearchListStore();
@@ -83,15 +85,27 @@ const handleCardClick = async(id: number) => {
 }
 
 // list of weather cards when user click on query result
-const weatherCardsList = computed(() => storeWeatherSearchList.getWeatherCardSearchList);
+const weatherCardsList = computed(() => storeWeatherSearchList.getWeatherCardSearchList.slice().reverse());
 
 // delete all cards
 const deleteAllCards = () => {
   storeWeatherSearchList.deleteAllCardsList();
 }
 
-//TODO: fix the blur function by adding a new variable that handles the blur event 
-// DID: added the function getForecast from the weather service,
-
+// delete specific card
+const deletCard = (id: number) => {
+  storeWeatherSearchList.deleteCard(id);
+}
 
 </script>
+
+<style scoped>
+.slide-fade-enter-active, .slide-fade-leave-active {
+  transition: all 0.5s ease;
+}
+.slide-fade-enter-from, .slide-fade-leave-to {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+</style>
