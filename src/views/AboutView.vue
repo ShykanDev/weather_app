@@ -27,10 +27,10 @@ import IAutocompleteCountry from '@/Interfaces/IAutoCompleteCountry';
 import WeatherService from '@/services/WeatherService';
 import WeatherCard from '@/components/WeatherCard.vue';
 import LoaderCircle from '@/components/LoaderCircle.vue';
-import { computed, onMounted, Ref, ref } from 'vue';
+import { computed,  Ref, ref } from 'vue';
 import HeaderBar from '@/components/HeaderBar.vue';
 import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore'; 
-import { LaIglooSolid } from 'oh-vue-icons/icons';
+import { UserPreferencesStore } from '@/store/UserPreferencesStore';
 
 const api_key = ref('258e43a114834b64b6f23707241007'); // API Key for the weather api
 const weatherService = new WeatherService(); // instance of the weather service class
@@ -95,11 +95,14 @@ const addInitialCards = () => {
     }
     setTimeout(() => {
         placeholderValue.value = 'Search place...'; // Esto se ejecutará después de los setTimeout
+          userPreference.setIsFirstRun(false);
     }, 1900 * initialPlacesId.value.length); // Asegúrate de que esto se ejecute después de todos los setTimeout
 }
 
+const userPreference = UserPreferencesStore();
 
-addInitialCards()
+(userPreference.getFirstRun) ? addInitialCards() : placeholderValue.value = 'Search place...';// If is user first run will load the addInitialCards function otherwise the place holder value will be 'Search place'
+
 
 </script>
 

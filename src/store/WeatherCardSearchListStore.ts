@@ -21,5 +21,6 @@ export const WeatherCardSearchListStore = defineStore("weatherCardSearchList", {
         getWeatherCardSearchList():Array<any> {
             return this.weatherCardSearchList
         }
-    }
+    },
+    persist:true
 })
