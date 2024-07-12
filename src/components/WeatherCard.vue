@@ -39,11 +39,7 @@ const props = defineProps({
     }
 })
 
-const getLargeIconUrl = (iconUrl: string) => {
-    // Example: assuming iconUrl is like "https://example.com/icon.png"
-    // Replace "64x64" with a larger size if available, or manipulate the URL as needed
-    return iconUrl.replace("64x64", "128x128");
-};
+const getLargeIconUrl = (iconUrl: string) => iconUrl.replace("64x64", "128x128"); 
 
 let toggleMoreInfo = ref(false);
 
