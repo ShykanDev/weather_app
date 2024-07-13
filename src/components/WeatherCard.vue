@@ -15,7 +15,7 @@
               <div>
                 <!-- final container -->
             </div>
-                <div class="relative flex items-center justify-center ">
+                <div class="relative flex items-center justify-center " v-if="props.weatherInfo.forecast.forecastday[0]">
                     <h3>Max: {{ props.weatherInfo.forecast.forecastday[0].day.maxtemp_c }}°</h3><v-icon scale="1.3" name="io-trending-up" />
                     <v-icon scale="1.3" name="la-grip-lines-vertical-solid" />
                     <h3 class=""><v-icon scale="1.3" name="io-trending-down" />Min: {{ props.weatherInfo.forecast.forecastday[0].day.mintemp_c}}°</h3>

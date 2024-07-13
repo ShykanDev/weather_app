@@ -19,5 +19,5 @@ export const UserPreferencesStore = defineStore("userPreferences", {
      return this.isFirstRun
    }
   },
-  persist:true
+  // persist:true
 });

@@ -11,7 +11,7 @@ export const WeatherCardSearchListStore = defineStore("weatherCardSearchList", {
             this.weatherCardSearchList.push(item)
         },
         deleteCard(item: any):void{
-            this.weatherCardSearchList.slice(this.weatherCardSearchList.indexOf(item), 1);
+            this.weatherCardSearchList.splice(this.weatherCardSearchList.indexOf(item), 1);
         },
         deleteAllCardsList():void{
             this.weatherCardSearchList = []
@@ -22,5 +22,5 @@ export const WeatherCardSearchListStore = defineStore("weatherCardSearchList", {
             return this.weatherCardSearchList
         }
     },
-    persist:true
+    // persist:true
 })

@@ -6,7 +6,7 @@
     <div  class="mt-5">
       <input  @click="handleQuery" v-model="query" @input="handleQuery"
       class="w-5/6 p-1 text-2xl text-center duration-500 shadow-md min-h-16 rounded-3xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none "
-      type="text" :placeholder="placeholderValue">
+      type="text" placeholder="Type">
     </div>
     <!-- Loader Circle -->
     <div v-if="isLoading" class="flex justify-center mt-4">
@@ -67,7 +67,6 @@ const handleCardClick = async(id: number) => { // Handle fetching and storing we
   isLoading.value = true; // Set the loader variable to true to show the loader until the data is fetched
   if (id) {
     try {
-      console.log(id);
       responseAutoComplete.value = [] // Clear the responseAutoComplete value when a new card is clicked
       query.value = "" // Clear the query value
       await weatherService.fetchForecast(api_key.value, id) // Fetch the forecast data for the clicked card
@@ -82,27 +81,6 @@ const handleCardClick = async(id: number) => { // Handle fetching and storing we
 
 // list of weather cards when user click on query result
 const weatherCardsList = computed(() => storeWeatherSearchList.getWeatherCardSearchList.slice().reverse());
-let placeholderValue = ref('');
-const initialPlaces = ref(['Paris', 'Colombia', 'Tokyo', 'Mexico City', 'London', 'Rio de Janeiro']);
-const initialPlacesId = ref([803267, 502209, 3125553, 3247379,2801268,287907]); //same places but these values are their respective id
-
-const addInitialCards = () => {
-    for (let i = 0; i < initialPlacesId.value.length; i++) {
-        setTimeout((index:number) => {
-            handleCardClick(initialPlacesId.value[index]);
-            placeholderValue.value = initialPlaces.value[index];
-        }, 1900 * i, i);
-    }
-    setTimeout(() => {
-        placeholderValue.value = 'Search place...'; // Esto se ejecutará después de los setTimeout
-          userPreference.setIsFirstRun(false);
-    }, 1900 * initialPlacesId.value.length); // Asegúrate de que esto se ejecute después de todos los setTimeout
-}
-
-const userPreference = UserPreferencesStore();
-
-(userPreference.getFirstRun) ? addInitialCards() : placeholderValue.value = 'Search place...';// If is user first run will load the addInitialCards function otherwise the place holder value will be 'Search place'
-
 
 </script>
 
