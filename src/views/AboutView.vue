@@ -1,17 +1,25 @@
 <template>
-  <div class="pt-16 bg-gradient-to-b from-sky-50 to-slate-50 min-h-dvh">
+  <div class="pt-16 bg-gradient-to-r from-slate-50 to-sky-50 min-h-dvh">
+    <div>
+      <SideBar/>
+    </div>
     <HeaderBar/>
     <h2 class="fixed bottom-0 right-0 z-30 inline-block pl-2 pr-2 mb-2 mr-3 rounded-full bg-slate-700 text-slate-100 ">{{ time }}</h2>
     <!-- Search Bar -->
-    <div  class="mt-5">
+    <div  class="relative w-full mt-5">
       <input  @click="handleQuery" v-model="query" @input="handleQuery"
       class="w-5/6 p-1 text-2xl text-center duration-500 shadow-md min-h-16 rounded-3xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none "
       type="text" placeholder="Type">
+      <Transition name="slide-fade">
+        <v-icon v-if="isTyping" class="absolute right-[6%] top-[2px] sm:right-[5%]" name="ri-loader-5-line" color="#00a0f6" animation="spin" />
+      </Transition>
     </div>
     <!-- Loader Circle -->
-    <div v-if="isLoading" class="flex justify-center mt-4">
-      <LoaderCircle />
-    </div>
+     <Transition name="fade">
+       <div v-if="isLoading" class="flex justify-center mt-4">
+         <LoaderCircle />
+        </div>
+      </Transition>
     <!-- Autocomlete List Cards -->
     <div  v-for="data in responseAutoComplete" :key="data.id">
       <AutoCompleteCard @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name" :country="data.country" :region="data.region"/>
@@ -30,6 +38,7 @@ import LoaderCircle from '@/components/LoaderCircle.vue';
 import { computed,  Ref, ref } from 'vue';
 import HeaderBar from '@/components/HeaderBar.vue';
 import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore'; 
+import SideBar from '@/components/SideBar.vue';
 import { UserPreferencesStore } from '@/store/UserPreferencesStore';
 
 const api_key = ref('258e43a114834b64b6f23707241007'); // API Key for the weather api
@@ -48,14 +57,17 @@ let timeout = setTimeout(() => {
 
 let responseAutoComplete: Ref<Array<IAutocompleteCountry>> = ref([]); // list of queries from the user that will be shown as a list of cards once the user click on the query result
 
+  let isTyping = ref(false);
 // When the user types in the search bar it will run the fetchAutocomplete function to get the results from the api and display them in the card component
 const handleQuery = () => {
   if (query.value != "") {
+    isTyping.value = true; // Set the isTyping variable to true to show the loader circle
     clearTimeout(timeout)
     timeout = setTimeout(async () => {
       await weatherService.fetchAutocomplete(api_key.value, query.value);
       const finalData = weatherService.getAutocomplete();
-      (query.value.length >= 1) ? responseAutoComplete.value = finalData.value : responseAutoComplete.value = [];
+      (query.value.length >= 1) ? responseAutoComplete.value = finalData.value : responseAutoComplete.value = []; // Clear the responseAutoComplete value when a new card is clicked
+      isTyping.value = false; // Set the isTyping variable to false to hide the loader circle 
     }, 400)
   }
 }
@@ -91,6 +103,13 @@ const weatherCardsList = computed(() => storeWeatherSearchList.getWeatherCardSea
 .slide-fade-enter-from, .slide-fade-leave-to {
   opacity: 0;
   transform: translateX(50px);
+}
+.fade-enter-active, .fade-leave-active {
+  transition: all 0.5s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+  /* transform: translateY(-5px); */
 }
 
 </style>

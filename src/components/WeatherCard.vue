@@ -1,6 +1,6 @@
 <template>
     <div class="flex justify-center w-full mt-5 mb-5 bg-transparent">
-            <div class="relative w-11/12 pt-4 overflow-auto bg-white bg-opacity-25 shadow-2xl min-w-8 rounded-2xl font-poppins backdrop-blur-sm bself-end">
+            <div class="relative w-11/12 pt-4 overflow-auto bg-white shadow-2xl bg-opacity-95 rounded-2xl font-poppins backdrop-blur-none">
             <!-- container city name and country -->
             <div class="flex justify-around ">
                 <h2>{{props.weatherInfo.location.name}}</h2>
