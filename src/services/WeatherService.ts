@@ -32,7 +32,7 @@ class WeatherService {
 
    async fetchCurrent(api_key:string,query:string,aqi='no'){
     try {
-        const url =`http://api.weatherapi.com/v1/current.json?key=${api_key}&q=${query}&aqi=${aqi}`
+        const url =`http://api.weatherapi.com/v1/current.json?key=${api_key}&q=${query}&aqi=${aqi}&lang=es`
         const res = await fetch(url);
         const json = await res.json();
         this.current.value = json;
@@ -43,7 +43,7 @@ class WeatherService {
 
    async fetchAutocomplete(api_key:string,query:string){
     try {
-        const url =`http://api.weatherapi.com/v1/search.json?key=${api_key}&q=${query}`
+        const url =`http://api.weatherapi.com/v1/search.json?key=${api_key}&q=${query}&lang=es`
         const res = await fetch(url);
         const json = await res.json();
         this.autocomplete.value = json;
@@ -54,7 +54,7 @@ class WeatherService {
 
    async fetchForecast(api_key:string,id:number, days=1, aqi='no', alerts='no'){
     try {
-        const url =`http://api.weatherapi.com/v1/forecast.json?key=${api_key}&q=id:${id}&days=${days}&aqui=${aqi}&alerts=${alerts}`
+        const url =`http://api.weatherapi.com/v1/forecast.json?key=${api_key}&q=id:${id}&days=${days}&aqui=${aqi}&alerts=${alerts}&lang=es`
         const res = await fetch(url);
         const json = await res.json();
         this.forecast.value = json;

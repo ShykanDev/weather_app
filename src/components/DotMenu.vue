@@ -26,7 +26,7 @@ body {
 }
 .line {
   fill: none;
-  stroke: black;
+  stroke: #0369A1;
   stroke-width: 6;
   transition: stroke-dasharray 500ms cubic-bezier(0.4, 0, 0.2, 1),
     stroke-dashoffset 500ms cubic-bezier(0.4, 0, 0.2, 1);

@@ -1,18 +1,14 @@
 <template>
-  <div class="pt-16 bg-gradient-to-r from-slate-50 to-sky-50 min-h-dvh">
-    <div>
-      <SideBar/>
-    </div>
-    <HeaderBar/>
-    <h2 class="fixed bottom-0 right-0 z-30 inline-block pl-2 pr-2 mb-2 mr-3 rounded-full bg-slate-700 text-slate-100 ">{{ time }}</h2>
+  <div class="pt-16 bg-gradient-to-r from-slate-50 to-sky-50 h-lvh">
+    <!-- top bar and side bar container -->
+     <div>
+       <HeaderBar class="fixed top-0"/>
+     </div>
+     <!-- current time -->
+    <h2 class="fixed bottom-0 right-0 z-50 inline-block pl-2 pr-2 mb-2 mr-3 rounded-full bg-slate-700 text-slate-100 ">{{ time }}</h2>
     <!-- Search Bar -->
-    <div  class="relative w-full mt-5">
-      <input  @click="handleQuery" v-model="query" @input="handleQuery"
-      class="w-5/6 p-1 text-2xl text-center duration-500 shadow-md min-h-16 rounded-3xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none "
-      type="text" placeholder="Type">
-      <Transition name="slide-fade">
-        <v-icon v-if="isTyping" class="absolute right-[6%] top-[2px] sm:right-[5%]" name="ri-loader-5-line" color="#00a0f6" animation="spin" />
-      </Transition>
+    <div  class="w-full " >
+      <input  @click="handleQuery" v-model="query" @input="handleQuery" class="w-5/6 p-1 text-2xl text-center duration-500 shadow-md min-h-16 rounded-2xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none " type="text" placeholder="Buscar">
     </div>
     <!-- Loader Circle -->
      <Transition name="fade">
@@ -22,7 +18,7 @@
       </Transition>
     <!-- Autocomlete List Cards -->
     <div  v-for="data in responseAutoComplete" :key="data.id">
-      <AutoCompleteCard @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name" :country="data.country" :region="data.region"/>
+      <AutoCompleteCard class="z-30" @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name" :country="data.country" :region="data.region"/>
   </div>
   <!-- List of Weather Cards -->
   <TransitionGroup name="slide-fade" tag="div"><div v-for="card in weatherCardsList" :key="card"><WeatherCard :weatherInfo="card" /></div></TransitionGroup>
@@ -38,8 +34,7 @@ import LoaderCircle from '@/components/LoaderCircle.vue';
 import { computed,  Ref, ref } from 'vue';
 import HeaderBar from '@/components/HeaderBar.vue';
 import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore'; 
-import SideBar from '@/components/SideBar.vue';
-import { UserPreferencesStore } from '@/store/UserPreferencesStore';
+import { SystemValuesStore } from '@/store/SystemValuesStore';
 
 const api_key = ref('258e43a114834b64b6f23707241007'); // API Key for the weather api
 const weatherService = new WeatherService(); // instance of the weather service class
@@ -48,7 +43,7 @@ const date = new Date().toLocaleString('en-us', { dateStyle: 'full' }); // date 
 
 const time = new Date().toLocaleTimeString('en-us', { timeStyle: 'short' }); // time to show at the top of the page only showing hours and minutes and not pm or am
 
-const query = ref(''); // the query that the user types in the search bar
+const query = ref(''); // query that user types in the search bar
 
 //  timeout for api call 
 let timeout = setTimeout(() => {
@@ -57,17 +52,18 @@ let timeout = setTimeout(() => {
 
 let responseAutoComplete: Ref<Array<IAutocompleteCountry>> = ref([]); // list of queries from the user that will be shown as a list of cards once the user click on the query result
 
-  let isTyping = ref(false);
+  const storeSysValues = SystemValuesStore();
+
 // When the user types in the search bar it will run the fetchAutocomplete function to get the results from the api and display them in the card component
 const handleQuery = () => {
   if (query.value != "") {
-    isTyping.value = true; // Set the isTyping variable to true to show the loader circle
+    storeSysValues.setIsTyping(true);
     clearTimeout(timeout)
     timeout = setTimeout(async () => {
       await weatherService.fetchAutocomplete(api_key.value, query.value);
       const finalData = weatherService.getAutocomplete();
       (query.value.length >= 1) ? responseAutoComplete.value = finalData.value : responseAutoComplete.value = []; // Clear the responseAutoComplete value when a new card is clicked
-      isTyping.value = false; // Set the isTyping variable to false to hide the loader circle 
+      storeSysValues.setIsTyping(false);
     }, 400)
   }
 }
