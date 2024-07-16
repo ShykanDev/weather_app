@@ -3,7 +3,7 @@
     <MainLayout>
         <!-- Full Forecast Main Content  -->
          <template #main>
-            <h1>This is a main content </h1>
+            <h1>This is a main content</h1>
          </template>
     </MainLayout>
   </div>

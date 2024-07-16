@@ -1,3 +1,7 @@
 TODO:
 Create a view for full forecast (DetailedForecast.vue) [X]
 Create add the view to router [X]
+Add to pinia a SystemValuesStore [X]
+Add values (Getters Setters) for click hamMenu to SystemValuesStore [X]
+Add values (Getters Setters) for click sideBarExtended to SystemValuesStore [X]
+

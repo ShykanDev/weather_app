@@ -1,16 +1,13 @@
 <template>
-  <div class="pt-16 bg-gradient-to-r from-slate-50 to-sky-50 h-lvh">
+  <div class="">
     <!-- top bar and side bar container -->
-     <div>
-       <HeaderBar class="fixed top-0"/>
-     </div>
-     <!-- current time -->
-    <h2 class="fixed bottom-0 right-0 z-50 inline-block pl-2 pr-2 mb-2 mr-3 rounded-full bg-slate-700 text-slate-100 ">{{ time }}</h2>
-    <!-- Search Bar -->
-    <div  class="w-full " >
-      <input  @click="handleQuery" v-model="query" @input="handleQuery" class="w-5/6 p-1 text-2xl text-center duration-500 shadow-md min-h-16 rounded-2xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none " type="text" placeholder="Buscar">
-    </div>
-    <!-- Loader Circle -->
+     <MainLayout>
+      <template #main>
+        <!-- Search Bar -->
+        <div class="w-full" >
+          <input @click="handleQuery" v-model="query" @input="handleQuery" class="w-5/6 p-1 text-2xl text-center duration-500 shadow-md min-h-16 rounded-2xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none " type="text" placeholder="Buscar">
+        </div>
+          <!-- Loader Circle -->
      <Transition name="fade">
        <div v-if="isLoading" class="flex justify-center mt-4">
          <LoaderCircle />
@@ -18,10 +15,13 @@
       </Transition>
     <!-- Autocomlete List Cards -->
     <div  v-for="data in responseAutoComplete" :key="data.id">
-      <AutoCompleteCard class="z-30" @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name" :country="data.country" :region="data.region"/>
+      <AutoCompleteCard class="" @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name" :country="data.country" :region="data.region"/>
   </div>
   <!-- List of Weather Cards -->
   <TransitionGroup name="slide-fade" tag="div"><div v-for="card in weatherCardsList" :key="card"><WeatherCard :weatherInfo="card" /></div></TransitionGroup>
+      </template>
+     </MainLayout>
+  
   </div>
 </template>
 
@@ -32,16 +32,14 @@ import WeatherService from '@/services/WeatherService';
 import WeatherCard from '@/components/WeatherCard.vue';
 import LoaderCircle from '@/components/LoaderCircle.vue';
 import { computed,  Ref, ref } from 'vue';
-import HeaderBar from '@/components/HeaderBar.vue';
 import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore'; 
 import { SystemValuesStore } from '@/store/SystemValuesStore';
+import MainLayout from '@/layouts/MainLayout.vue';
 
 const api_key = ref('258e43a114834b64b6f23707241007'); // API Key for the weather api
 const weatherService = new WeatherService(); // instance of the weather service class
 
-const date = new Date().toLocaleString('en-us', { dateStyle: 'full' }); // date to show at the top of the page
 
-const time = new Date().toLocaleTimeString('en-us', { timeStyle: 'short' }); // time to show at the top of the page only showing hours and minutes and not pm or am
 
 const query = ref(''); // query that user types in the search bar
 
