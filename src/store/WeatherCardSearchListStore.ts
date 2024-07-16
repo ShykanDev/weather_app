@@ -8,10 +8,10 @@ export const WeatherCardSearchListStore = defineStore("weatherCardSearchList", {
    },
     actions: {
         addCard(item: any):void{
-            this.weatherCardSearchList.push(item)
+            this.weatherCardSearchList.unshift(item)
         },
-        deleteCard(item: any):void{
-            this.weatherCardSearchList.splice(this.weatherCardSearchList.indexOf(item), 1);
+        deleteCard(id:number):void{
+            this.weatherCardSearchList.splice(id, 1);
         },
         deleteAllCardsList():void{
             this.weatherCardSearchList = []
@@ -20,6 +20,9 @@ export const WeatherCardSearchListStore = defineStore("weatherCardSearchList", {
     getters:{
         getWeatherCardSearchList():Array<any> {
             return this.weatherCardSearchList
+        },
+        getWeatherCardSearchListReverse():Array<any> {
+            return this.weatherCardSearchList.reverse()
         }
     },
     // persist:true

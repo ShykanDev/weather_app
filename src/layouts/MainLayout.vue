@@ -1,14 +1,14 @@
 <template>
     <!-- header -->
     <div>
-        <HeaderBar/>
+            <HeaderBar/>
     </div>
     <!-- main -->
-     <div class="fixed top-0 bottom-0 left-0 right-0 pt-20 bg-gradient-to-r from-slate-50 to-sky-50">
-        <div>
-            <slot name="main"></slot>
-        </div>
-    </div>
+        <div class="bg-gradient-to-r from-slate-50 to-sky-50 h-svh">
+            <div class="pt-20">
+                <slot name="main"></slot>
+            </div>
+        </div><!--Main background -->
 </template>
 
 <script lang="ts" setup>

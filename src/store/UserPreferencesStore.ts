@@ -7,15 +7,15 @@ export const UserPreferencesStore = defineStore("userPreferences", {
     };
   },
   actions: {
-    setDarkMode(darkMode: boolean) {
+    setDarkMode(darkMode: boolean) { // set darkMode value
       this.darkMode = darkMode;
     },
-    setIsFirstRun(isFirstRun: boolean) {
+    setIsFirstRun(isFirstRun: boolean) { // set isFirstRun value
       this.isFirstRun = isFirstRun;
     },
   },
   getters: {
-   getFirstRun():boolean{
+   getFirstRun():boolean{ // return isFirstRun value
      return this.isFirstRun
    }
   },

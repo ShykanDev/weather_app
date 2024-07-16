@@ -2,6 +2,7 @@
     <div class="flex justify-center w-full mt-5 mb-5 bg-transparent">
             <div class="relative w-11/12 pt-4 overflow-auto bg-white shadow-2xl bg-opacity-95 rounded-2xl font-poppins backdrop-blur-none">
             <!-- container city name and country -->
+            <v-icon @click="storeWeatherSearchList.deleteCard(props.id)" v-if="storeSysValues.getEditMode" class="fixed z-30 cursor-pointer right-4 top-1" name="md-deleteforever-round" color="red" scale="2" animation="ring" speed="slow"/>
             <div class="flex justify-around ">
                 <h2>{{props.weatherInfo.location.name}}</h2>
                 <h3>{{ props.weatherInfo.location.country}}</h3>
@@ -9,8 +10,8 @@
             <!-- container current weather -->
                 <div class="flex flex-wrap items-center justify-evenly">
                     <img class="self-start w-20" :src="getLargeIconUrl(props.weatherInfo.current.condition.icon)">
-                    <h3 class="text-[40px] font-medium ">{{ props.weatherInfo.current.temp_c }}°</h3>
-                    <h3 class="pl-1 pr-1 mr-1 text-white bg-sky-700 rounded-2xl ">{{ props.weatherInfo.current.condition.text }}</h3>
+                    <h3 class="text-[40px] font-medium">{{ props.weatherInfo.current.temp_c }}°</h3>
+                    <h3 class="pl-1 pr-1 mr-1 text-white bg-sky-700 rounded-2xl">{{ props.weatherInfo.current.condition.text }}</h3>
                 </div>
               <div>
                 <!-- final container -->
@@ -30,12 +31,21 @@
 <script lang="ts" setup>
 import { defineProps, ref } from 'vue';
 import MoreInfoCard from '@/components/MoreInfoCard.vue'
-import DotMenu from './DotMenu.vue';
+import DotMenu from './animations/DotMenu.vue';
+import { SystemValuesStore } from '@/store/SystemValuesStore';
+import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore';
 
-const props = defineProps({
+const storeSysValues = SystemValuesStore(); // Instance of SystemValuesStore
+const storeWeatherSearchList = WeatherCardSearchListStore(); // Instance of WeatherCardSearchListStore
+
+const props = defineProps({ //Props received from main result (all weather data)
     weatherInfo:{
         required:true,
         type:Object
+    },
+    id:{
+        required:true,
+        type:Number
     }
 })
 
@@ -44,6 +54,9 @@ const getLargeIconUrl = (iconUrl: string) => iconUrl.replace("64x64", "128x128")
 let toggleMoreInfo = ref(false); // Variable to show or hide MoreInfoCard component
 
 const openMoreInfo = () => toggleMoreInfo.value = !toggleMoreInfo.value; // Function to open or close MoreInfoCard component based on the click on DotMenu
+
+
+
 </script>
 
 <style scoped></style>

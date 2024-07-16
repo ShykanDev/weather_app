@@ -5,6 +5,7 @@ export const SystemValuesStore = defineStore('SystemValues',{
         return{
             isTyping: false,
             sidebarExtended:false,
+            editMode: false,
         }
     },
     getters:{
@@ -13,6 +14,9 @@ export const SystemValuesStore = defineStore('SystemValues',{
         },
         getSidebarExtended():boolean{ // return sidebarExtended value
             return this.sidebarExtended;
+        },
+        getEditMode():boolean{ // return editMode value
+            return this.editMode;
         }
     },
     actions:{
@@ -21,6 +25,9 @@ export const SystemValuesStore = defineStore('SystemValues',{
         },
         setSidebarExtended():void{ // set sidebarExtended value
             this.sidebarExtended = ! this.sidebarExtended;
+        },
+        setEditMode():void{ // set editMode value
+            this.editMode = !this.editMode;
         }
     }
 })

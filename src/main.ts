@@ -7,8 +7,8 @@ const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate)
 import './assets/index.css'
 import { OhVueIcon, addIcons } from 'oh-vue-icons';
-import { MdDeleteforeverTwotone, MdMorevert,BiCalendarFill,FaTemperatureLow,WiHumidity,WiDayWindy,MdBoy,BiCloudsFill,BiDropletHalf,HiSolidClock,BiSunset,BiSunrise,LaGripLinesVerticalSolid,IoTrendingUp,IoTrendingDown,IoPartlySunnyOutline,GiEarthAmerica,MdLocationonTwotone,RiLoader5Line                   } from 'oh-vue-icons/icons';
-addIcons(MdDeleteforeverTwotone, MdMorevert,BiCalendarFill,FaTemperatureLow,WiHumidity,WiDayWindy,MdBoy,BiCloudsFill,BiDropletHalf,HiSolidClock,BiSunset,BiSunrise,LaGripLinesVerticalSolid,IoTrendingUp,IoTrendingDown,IoPartlySunnyOutline,GiEarthAmerica,MdLocationonTwotone,RiLoader5Line                  );
+import { MdDeleteforeverTwotone, MdMorevert,BiCalendarFill,FaTemperatureLow,WiHumidity,WiDayWindy,MdBoy,BiCloudsFill,BiDropletHalf,HiSolidClock,BiSunset,BiSunrise,LaGripLinesVerticalSolid,IoTrendingUp,IoTrendingDown,IoPartlySunnyOutline,GiEarthAmerica,MdLocationonTwotone,RiLoader5Line, RiEditLine,MdDeleteforeverRound,OiDiffRemoved                     } from 'oh-vue-icons/icons';
+addIcons(MdDeleteforeverTwotone, MdMorevert,BiCalendarFill,FaTemperatureLow,WiHumidity,WiDayWindy,MdBoy,BiCloudsFill,BiDropletHalf,HiSolidClock,BiSunset,BiSunrise,LaGripLinesVerticalSolid,IoTrendingUp,IoTrendingDown,IoPartlySunnyOutline,GiEarthAmerica,MdLocationonTwotone,RiLoader5Line, RiEditLine,MdDeleteforeverRound,OiDiffRemoved                   );
             
 const app = createApp(App);
 app.use(router);

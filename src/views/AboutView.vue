@@ -1,6 +1,5 @@
 <template>
   <div class="">
-    <!-- top bar and side bar container -->
      <MainLayout>
       <template #main>
         <!-- Search Bar -->
@@ -14,14 +13,13 @@
         </div>
       </Transition>
     <!-- Autocomlete List Cards -->
-    <div  v-for="data in responseAutoComplete" :key="data.id">
+    <div v-for="data in responseAutoComplete" :key="data.id">
       <AutoCompleteCard class="" @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name" :country="data.country" :region="data.region"/>
   </div>
   <!-- List of Weather Cards -->
-  <TransitionGroup name="slide-fade" tag="div"><div v-for="card in weatherCardsList" :key="card"><WeatherCard :weatherInfo="card" /></div></TransitionGroup>
+  <TransitionGroup name="slide-fade" tag="div"><div v-for="(card, id) in storeWeatherSearchList.getWeatherCardSearchList" :key="card"><WeatherCard :weatherInfo="card" :id="id" /></div></TransitionGroup>
       </template>
      </MainLayout>
-  
   </div>
 </template>
 
@@ -30,8 +28,8 @@ import AutoCompleteCard from '@/components/AutoCompleteCard.vue';
 import IAutocompleteCountry from '@/Interfaces/IAutoCompleteCountry';
 import WeatherService from '@/services/WeatherService';
 import WeatherCard from '@/components/WeatherCard.vue';
-import LoaderCircle from '@/components/LoaderCircle.vue';
-import { computed,  Ref, ref } from 'vue';
+import LoaderCircle from '@/components/animations/LoaderCircle.vue';
+import {  Ref, ref } from 'vue';
 import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore'; 
 import { SystemValuesStore } from '@/store/SystemValuesStore';
 import MainLayout from '@/layouts/MainLayout.vue';
@@ -86,7 +84,7 @@ const handleCardClick = async(id: number) => { // Handle fetching and storing we
 }
 
 // list of weather cards when user click on query result
-const weatherCardsList = computed(() => storeWeatherSearchList.getWeatherCardSearchList.slice().reverse());
+// const storeWeatherSearchList.getWeatherCardSearchList = computed(() => storeWeatherSearchList.getWeatherCardSearchList.slice().reverse());
 
 </script>
 

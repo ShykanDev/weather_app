@@ -4,4 +4,9 @@ Create add the view to router [X]
 Add to pinia a SystemValuesStore [X]
 Add values (Getters Setters) for click hamMenu to SystemValuesStore [X]
 Add values (Getters Setters) for click sideBarExtended to SystemValuesStore [X]
-
+--
+Add a router link to weathy app logo (HeaderBar>H1) [X] 
+Convert div sidebar to a component [X]
+Add icon delete to card [X]
+Add edit option to sidebar []
+Add function pinia to delete card [X]
