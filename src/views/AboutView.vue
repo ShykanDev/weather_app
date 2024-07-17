@@ -6,13 +6,15 @@
         <div class="w-full" >
           <input @click="handleQuery" v-model="query" @input="handleQuery" class="w-5/6 p-1 text-2xl text-center duration-500 shadow-md min-h-16 rounded-2xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none " type="text" placeholder="Buscar">
         </div>
-          <!-- Loader Circle -->
+        <!-- Loader Circle -->
      <Transition name="fade">
        <div v-if="isLoading" class="flex justify-center mt-4">
          <LoaderCircle />
         </div>
       </Transition>
-    <!-- Autocomlete List Cards -->
+      <!-- Toggle Switch -->
+       <ToggleSwitch/>
+      <!-- Autocomlete List Cards -->
     <div v-for="data in responseAutoComplete" :key="data.id">
       <AutoCompleteCard class="" @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name" :country="data.country" :region="data.region"/>
   </div>
@@ -33,11 +35,10 @@ import {  Ref, ref } from 'vue';
 import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore'; 
 import { SystemValuesStore } from '@/store/SystemValuesStore';
 import MainLayout from '@/layouts/MainLayout.vue';
+import ToggleSwitch from '@/components/animations/ToggleSwitch.vue';
 
 const api_key = ref('258e43a114834b64b6f23707241007'); // API Key for the weather api
 const weatherService = new WeatherService(); // instance of the weather service class
-
-
 
 const query = ref(''); // query that user types in the search bar
 
@@ -82,9 +83,6 @@ const handleCardClick = async(id: number) => { // Handle fetching and storing we
     }
   }
 }
-
-// list of weather cards when user click on query result
-// const storeWeatherSearchList.getWeatherCardSearchList = computed(() => storeWeatherSearchList.getWeatherCardSearchList.slice().reverse());
 
 </script>
 

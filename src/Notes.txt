@@ -8,5 +8,11 @@ Add values (Getters Setters) for click sideBarExtended to SystemValuesStore [X]
 Add a router link to weathy app logo (HeaderBar>H1) [X] 
 Convert div sidebar to a component [X]
 Add icon delete to card [X]
-Add edit option to sidebar []
+Add edit option to sidebar [--]
 Add function pinia to delete card [X]
+--
+Fix the delete icon position []
+Add favicon to website []
+Add info to sidebar []
+Add toggle switch iOS Style []
+

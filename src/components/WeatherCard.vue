@@ -1,8 +1,8 @@
 <template>
     <div class="flex justify-center w-full mt-5 mb-5 bg-transparent">
-            <div class="relative w-11/12 pt-4 overflow-auto bg-white shadow-2xl bg-opacity-95 rounded-2xl font-poppins backdrop-blur-none">
+            <div :style="{backgroundColor: storeSysValues.getEditMode ? '#980037' : 'white', color: storeSysValues.getEditMode ? 'white' : 'black'}" class="relative w-11/12 pt-4 overflow-auto text-white transition-colors duration-150 ease-out shadow-2xl bg-opacity-95 rounded-2xl font-poppins backdrop-blur-none"> 
             <!-- container city name and country -->
-            <v-icon @click="storeWeatherSearchList.deleteCard(props.id)" v-if="storeSysValues.getEditMode" class="fixed z-30 cursor-pointer right-4 top-1" name="md-deleteforever-round" color="red" scale="2" animation="ring" speed="slow"/>
+            <v-icon @click="storeWeatherSearchList.deleteCard(props.id)" v-if="storeSysValues.getEditMode" class="fixed z-30 cursor-pointer right-2 top-[6%]" name="md-deleteforever-round" color="white" scale="2" animation="ring" speed="slow"/>
             <div class="flex justify-around ">
                 <h2>{{props.weatherInfo.location.name}}</h2>
                 <h3>{{ props.weatherInfo.location.country}}</h3>
