@@ -20,7 +20,7 @@
                     <h3>Max: {{ props.weatherInfo.forecast.forecastday[0].day.maxtemp_c }}°</h3><v-icon scale="1.3" name="io-trending-up" />
                     <v-icon scale="1.3" name="la-grip-lines-vertical-solid" />
                     <h3 class=""><v-icon scale="1.3" name="io-trending-down" />Min: {{ props.weatherInfo.forecast.forecastday[0].day.mintemp_c}}°</h3>
-                    <div @click="openMoreInfo" class="absolute bottom-0 right-0 z-40" > <DotMenu  /> </div>
+                    <div @click="openMoreInfo" class="absolute bottom-0 right-0 z-40"> <DotMenu  /> </div>
                     <!-- <v-icon @click="openMoreInfo" class="absolute bottom-1 2 right-1" scale="1.3" name="md-morevert" /> -->
                 </div>
             <MoreInfoCard class="transition-opacity duration-300 ease-out" :weatherInfo="props.weatherInfo" :style="toggleMoreInfo ? 'opacity:1' : 'opacity:0'" /> 

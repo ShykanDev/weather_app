@@ -19,5 +19,5 @@ Fix the delete icon position [X]
 Add an animation for fullForecast [--]
 Add favicon to website []
 Add info to sidebar []
-Add toggle switch iOS Style []
-
+Add toggle switch iOS Style [X]
+Fix the function to open full weather []

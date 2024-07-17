@@ -24,10 +24,9 @@
         <!-- List of Weather Cards -->
         <TransitionGroup name="slide-fade" tag="div">
           <div v-for="(card, id) in storeWeatherSearchList.getWeatherCardSearchList" :key="card">
-              <WeatherCard @dblclick="getCardInfo(card)"  :weatherInfo="card" :id="id"/>
+              <WeatherCard @dblclick="openFullForecast(card, $event)"  :weatherInfo="card" :id="id"/>
           </div>
         </TransitionGroup>
-
       </template>
     </MainLayout>
   </div>
@@ -93,9 +92,9 @@ const handleCardClick = async(id: number):Promise<void> => { // Handle fetching 
   }
 }
 
-// push to fullForeccast view, passing as param the id 
 const router = useRouter();
-const getCardInfo = (card:any):Promise<void | NavigationFailure | undefined > => router.push({name:'fullForecast', params:{id:card.id}})
+const openFullForecast = (card:any, e:any) => (e.target.parentElement.id !== 'dot-menu') ? router.push({name:'fullForecast', params:{id:card.id}}) : console.log("Clicked on dot-menu"); // Open full forecast page on double click, if the user clicks on the dot menu it will not open the full forecast page
+
 
 </script>
 
