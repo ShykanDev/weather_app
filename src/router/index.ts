@@ -17,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
-    path:'/fullForecast',
+    path:'/fullForecast/:id',
     name:'fullForecast',
     component: () => import(/* webpackChunkName: "fullForecast" */ '../views/FullForecast.vue')
   },

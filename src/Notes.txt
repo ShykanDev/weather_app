@@ -1,4 +1,6 @@
 TODO:
+X stands for done 
+-- stands for in progress/ partially done
 Create a view for full forecast (DetailedForecast.vue) [X]
 Create add the view to router [X]
 Add to pinia a SystemValuesStore [X]
@@ -11,7 +13,10 @@ Add icon delete to card [X]
 Add edit option to sidebar [--]
 Add function pinia to delete card [X]
 --
-Fix the delete icon position []
+Add a view for full forecast when user clicks on the card [--] // when user clicks on the card it will pass the id to a router link 
+Fix more info button for weather card to position fixed and add a high index 
+Fix the delete icon position [X]
+Add an animation for fullForecast [--]
 Add favicon to website []
 Add info to sidebar []
 Add toggle switch iOS Style []

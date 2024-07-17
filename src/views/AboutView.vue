@@ -1,28 +1,35 @@
 <template>
   <div class="">
-     <MainLayout>
+    <MainLayout>
       <template #main>
         <!-- Search Bar -->
-        <div class="w-full" >
-          <input @click="handleQuery" v-model="query" @input="handleQuery" class="w-5/6 p-1 text-2xl text-center duration-500 shadow-md min-h-16 rounded-2xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none " type="text" placeholder="Buscar">
+        <div class="w-full">
+          <input  @click="handleQuery" v-model="query" @input="handleQuery"
+            class="w-5/6 p-1 text-2xl text-center duration-500 shadow-md min-h-16 rounded-2xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none "
+            type="text" placeholder="Buscar">
         </div>
         <!-- Loader Circle -->
-     <Transition name="fade">
-       <div v-if="isLoading" class="flex justify-center mt-4">
-         <LoaderCircle />
+        <Transition name="fade">
+          <div v-if="isLoading" class="flex justify-center mt-4">
+            <LoaderCircle />
+          </div>
+        </Transition>
+        <!-- Toggle Switch -->
+        <ToggleSwitch />
+        <!-- Autocomlete List Cards -->
+        <div v-for="data in responseAutoComplete" :key="data.id">
+          <AutoCompleteCard class="" @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name"
+            :country="data.country" :region="data.region" />
         </div>
-      </Transition>
-      <!-- Toggle Switch -->
-       <ToggleSwitch/>
-      <!-- Autocomlete List Cards -->
-    <div v-for="data in responseAutoComplete" :key="data.id">
-      <AutoCompleteCard class="" @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name" :country="data.country" :region="data.region"/>
-  </div>
-  <!-- List of Weather Cards -->
-  <TransitionGroup name="slide-fade" tag="div"><div v-for="(card, id) in storeWeatherSearchList.getWeatherCardSearchList" :key="card">
-    <WeatherCard @click="getCardInfo(card)" :weatherInfo="card" :id="id"/></div></TransitionGroup>
+        <!-- List of Weather Cards -->
+        <TransitionGroup name="slide-fade" tag="div">
+          <div v-for="(card, id) in storeWeatherSearchList.getWeatherCardSearchList" :key="card">
+              <WeatherCard @dblclick="getCardInfo(card)"  :weatherInfo="card" :id="id"/>
+          </div>
+        </TransitionGroup>
+
       </template>
-     </MainLayout>
+    </MainLayout>
   </div>
 </template>
 
@@ -37,6 +44,7 @@ import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore';
 import { SystemValuesStore } from '@/store/SystemValuesStore';
 import MainLayout from '@/layouts/MainLayout.vue';
 import ToggleSwitch from '@/components/animations/ToggleSwitch.vue';
+import { NavigationFailure, NavigationFailureType, useRouter } from 'vue-router';
 
 const api_key = ref('258e43a114834b64b6f23707241007'); // API Key for the weather api
 const weatherService = new WeatherService(); // instance of the weather service class
@@ -53,7 +61,7 @@ let responseAutoComplete: Ref<Array<IAutocompleteCountry>> = ref([]); // list of
   const storeSysValues = SystemValuesStore();
 
 // When the user types in the search bar it will run the fetchAutocomplete function to get the results from the api and display them in the card component
-const handleQuery = () => {
+const handleQuery = ():void => {
   if (query.value != "") {
     storeSysValues.setIsTyping(true);
     clearTimeout(timeout)
@@ -69,7 +77,7 @@ const handleQuery = () => {
 const storeWeatherSearchList = WeatherCardSearchListStore(); // WeatherCardSearchListStore
 
 let isLoading = ref(false); // Loader variable to show or hide loader for handleCardClick function
-const handleCardClick = async(id: number) => { // Handle fetching and storing weather forecast data based on card click events.
+const handleCardClick = async(id: number):Promise<void> => { // Handle fetching and storing weather forecast data based on card click events.
   isLoading.value = true; // Set the loader variable to true to show the loader until the data is fetched
   if (id) {
     try {
@@ -85,11 +93,9 @@ const handleCardClick = async(id: number) => { // Handle fetching and storing we
   }
 }
 
-// get info of card clicked
-const getCardInfo = (card:any) => {
-  console.log(card);
-  
-}
+// push to fullForeccast view, passing as param the id 
+const router = useRouter();
+const getCardInfo = (card:any):Promise<void | NavigationFailure | undefined > => router.push({name:'fullForecast', params:{id:card.id}})
 
 </script>
 
