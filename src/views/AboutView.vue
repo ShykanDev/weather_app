@@ -19,7 +19,8 @@
       <AutoCompleteCard class="" @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name" :country="data.country" :region="data.region"/>
   </div>
   <!-- List of Weather Cards -->
-  <TransitionGroup name="slide-fade" tag="div"><div v-for="(card, id) in storeWeatherSearchList.getWeatherCardSearchList" :key="card"><WeatherCard :weatherInfo="card" :id="id" /></div></TransitionGroup>
+  <TransitionGroup name="slide-fade" tag="div"><div v-for="(card, id) in storeWeatherSearchList.getWeatherCardSearchList" :key="card">
+    <WeatherCard @click="getCardInfo(card)" :weatherInfo="card" :id="id"/></div></TransitionGroup>
       </template>
      </MainLayout>
   </div>
@@ -76,12 +77,18 @@ const handleCardClick = async(id: number) => { // Handle fetching and storing we
       query.value = "" // Clear the query value
       await weatherService.fetchForecast(api_key.value, id) // Fetch the forecast data for the clicked card
       const weatherForecast =  weatherService.getForecast();
-      storeWeatherSearchList.addCard(weatherForecast.value);    // Once the data is fetched store it in the WeatherCardSearchListStore
+      storeWeatherSearchList.addCard(weatherForecast.value, id);    // Once the data is fetched store it in the WeatherCardSearchListStore
       isLoading.value = false; // Set the loader variable to false to hide the loader once the data is finally fetched
     } catch (error) {
       console.log(`Error retrieving forecast weather ${error}`); // if there is an error log the error
     }
   }
+}
+
+// get info of card clicked
+const getCardInfo = (card:any) => {
+  console.log(card);
+  
 }
 
 </script>

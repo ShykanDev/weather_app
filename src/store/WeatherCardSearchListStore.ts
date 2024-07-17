@@ -7,7 +7,8 @@ export const WeatherCardSearchListStore = defineStore("weatherCardSearchList", {
        }    
    },
     actions: {
-        addCard(item: any):void{
+        addCard(item: any, id:number):void{
+            item.id = id
             this.weatherCardSearchList.unshift(item)
         },
         deleteCard(id:number):void{
