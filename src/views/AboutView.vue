@@ -14,13 +14,13 @@
             <LoaderCircle />
           </div>
         </Transition>
-        <!-- Toggle Switch -->
-        <ToggleSwitch />
         <!-- Autocomlete List Cards -->
         <div v-for="data in responseAutoComplete" :key="data.id">
           <AutoCompleteCard class="" @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name"
             :country="data.country" :region="data.region" />
         </div>
+            <!-- Toggle Switch -->
+            <ToggleSwitch />
         <!-- List of Weather Cards -->
         <TransitionGroup name="slide-fade" tag="div">
           <div v-for="(card, id) in storeWeatherSearchList.getWeatherCardSearchList" :key="card">
@@ -44,9 +44,9 @@ import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore';
 import { SystemValuesStore } from '@/store/SystemValuesStore';
 import MainLayout from '@/layouts/MainLayout.vue';
 import ToggleSwitch from '@/components/animations/ToggleSwitch.vue';
-import { NavigationFailure, NavigationFailureType, useRouter } from 'vue-router';
+import { NavigationFailure, useRouter } from 'vue-router';
 
-const api_key = ref('258e43a114834b64b6f23707241007'); // API Key for the weather api
+const api_key = ref('d7576f684b9e4e6b88070938241707'); // API Key for the weather api
 const weatherService = new WeatherService(); // instance of the weather service class
 
 const query = ref(''); // query that user types in the search bar

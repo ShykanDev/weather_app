@@ -6,6 +6,7 @@ export const SystemValuesStore = defineStore('SystemValues',{
             isTyping: false,
             sidebarExtended:false,
             editMode: false,
+            fullForecastDataLoaded: false
         }
     },
     getters:{
@@ -17,6 +18,9 @@ export const SystemValuesStore = defineStore('SystemValues',{
         },
         getEditMode():boolean{ // return editMode value
             return this.editMode;
+        },
+        getFullForecastDataLoaded():boolean{ // return fullForecastDataLoaded value
+            return this.fullForecastDataLoaded;
         }
     },
     actions:{
@@ -28,6 +32,9 @@ export const SystemValuesStore = defineStore('SystemValues',{
         },
         setEditMode():void{ // set editMode value
             this.editMode = !this.editMode;
+        },
+        setFullForecastDataLoaded(payload:boolean):void{ // set fullForecastDataLoaded value
+            this.fullForecastDataLoaded = payload;
         }
     }
 })
