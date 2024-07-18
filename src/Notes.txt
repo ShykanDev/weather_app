@@ -1,6 +1,7 @@
 TODO:
 X stands for done 
 -- stands for in progress/ partially done
+/ stands for currently doing it
 Create a view for full forecast (DetailedForecast.vue) [X]
 Create add the view to router [X]
 Add to pinia a SystemValuesStore [X]
@@ -20,4 +21,6 @@ Add an animation for fullForecast [--]
 Add favicon to website []
 Add info to sidebar []
 Add toggle switch iOS Style [X]
-Fix the function to open full weather []
+--
+Fix the function to open full weather [X]
+Add bg colors to each data of fullForecast [/]

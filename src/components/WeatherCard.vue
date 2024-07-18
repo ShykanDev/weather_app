@@ -1,10 +1,10 @@
 <template>
     <div class="flex justify-center w-full mt-5 mb-5 bg-transparent">
-            <div :style="{backgroundColor: storeSysValues.getEditMode ? '#980037' : 'white', color: storeSysValues.getEditMode ? 'white' : 'black'}" class="relative w-11/12 pt-4 overflow-auto text-white transition-colors duration-150 ease-out shadow-2xl bg-opacity-95 rounded-2xl font-poppins backdrop-blur-none"> 
+            <div :style="{backgroundColor: storeSysValues.getEditMode ? '#980037' : 'white', color: storeSysValues.getEditMode ? 'white' : 'black'}" class="relative w-11/12 pt-4 overflow-auto text-white transition-colors duration-150 ease-out shadow-xl rounded-2xl font-poppins backdrop-blur-none"> 
             <!-- container city name and country -->
             <v-icon @click="storeWeatherSearchList.deleteCard(props.id)" v-if="storeSysValues.getEditMode" class="fixed z-30 cursor-pointer right-2 top-[6%]" name="md-deleteforever-round" color="white" scale="2" animation="ring" speed="slow"/>
             <div class="flex justify-around ">
-                <h2>{{props.weatherInfo.location.name}}</h2>
+                <h2 @click="openFullForecast(props.weatherInfo.id)"  class="text-lg font-medium underline cursor-pointer" >{{props.weatherInfo.location.name}}</h2>
                 <h3>{{ props.weatherInfo.location.country}}</h3>
             </div>
             <!-- container current weather -->
@@ -23,7 +23,7 @@
                     <div @click="openMoreInfo" class="absolute bottom-0 right-0 z-40"> <DotMenu  /> </div>
                     <!-- <v-icon @click="openMoreInfo" class="absolute bottom-1 2 right-1" scale="1.3" name="md-morevert" /> -->
                 </div>
-            <MoreInfoCard class="transition-opacity duration-300 ease-out" :weatherInfo="props.weatherInfo" :style="toggleMoreInfo ? 'opacity:1' : 'opacity:0'" /> 
+            <MoreInfoCard class="transition-opacity duration-300 ease-out" :weatherInfo="props.weatherInfo" :style="{opacity: toggleMoreInfo ? 1 : 0, zIndex: toggleMoreInfo ? 1 : -60}" /> 
         </div>
     </div>
 </template>
@@ -34,6 +34,7 @@ import MoreInfoCard from '@/components/MoreInfoCard.vue'
 import DotMenu from './animations/DotMenu.vue';
 import { SystemValuesStore } from '@/store/SystemValuesStore';
 import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore';
+import { useRouter } from 'vue-router';
 
 const storeSysValues = SystemValuesStore(); // Instance of SystemValuesStore
 const storeWeatherSearchList = WeatherCardSearchListStore(); // Instance of WeatherCardSearchListStore
@@ -55,6 +56,9 @@ let toggleMoreInfo = ref(false); // Variable to show or hide MoreInfoCard compon
 
 const openMoreInfo = () => toggleMoreInfo.value = !toggleMoreInfo.value; // Function to open or close MoreInfoCard component based on the click on DotMenu
 
+const router = useRouter();
+ // Open full forecast page on double click, if the user clicks on the dot menu it will not open the full forecast page
+const openFullForecast = (id: number) => router.push({ name: 'fullForecast', params: { id: id } }); // Open full forecast page on double click, if the user clicks on the dot menu it will not open the full forecast page
 
 
 </script>

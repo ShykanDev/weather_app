@@ -12,8 +12,8 @@
             <TopHamMenu @click="storeSysValues.setSidebarExtended()" class="fixed top-0 right-0 z-50"/>
         </div>
             <!-- Side Bar -->
+        </div>
             <SideBar/>
-    </div>
 </template>
 
 <script lang="ts" setup>

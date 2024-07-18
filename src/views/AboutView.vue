@@ -2,31 +2,33 @@
   <div class="">
     <MainLayout>
       <template #main>
-        <!-- Search Bar -->
-        <div class="w-full">
-          <input  @click="handleQuery" v-model="query" @input="handleQuery"
-            class="w-5/6 p-1 text-2xl text-center duration-500 shadow-md min-h-16 rounded-2xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none "
-            type="text" placeholder="Buscar">
-        </div>
-        <!-- Loader Circle -->
-        <Transition name="fade">
-          <div v-if="isLoading" class="flex justify-center mt-4">
-            <LoaderCircle />
+        <div class="pb-20 overflow-x-hidden">
+          <!-- Search Bar -->
+          <div class="w-full">
+            <input @click="handleQuery" v-model="query" @input="handleQuery"
+              class="w-5/6 p-1 text-2xl text-center duration-500 shadow-md min-h-16 rounded-2xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none "
+              type="text" placeholder="Buscar">
           </div>
-        </Transition>
-        <!-- Autocomlete List Cards -->
-        <div v-for="data in responseAutoComplete" :key="data.id">
-          <AutoCompleteCard class="" @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name"
-            :country="data.country" :region="data.region" />
-        </div>
-            <!-- Toggle Switch -->
-            <ToggleSwitch />
-        <!-- List of Weather Cards -->
-        <TransitionGroup name="slide-fade" tag="div">
-          <div v-for="(card, id) in storeWeatherSearchList.getWeatherCardSearchList" :key="card">
-              <WeatherCard @dblclick="openFullForecast(card, $event)"  :weatherInfo="card" :id="id"/>
+          <!-- Loader Circle -->
+          <Transition name="fade">
+            <div v-if="isLoading" class="flex justify-center mt-4">
+              <LoaderCircle />
+            </div>
+          </Transition>
+          <!-- Autocomlete List Cards -->
+          <div v-for="data in responseAutoComplete" :key="data.id">
+            <AutoCompleteCard class="" @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name"
+              :country="data.country" :region="data.region" />
           </div>
-        </TransitionGroup>
+          <!-- Toggle Switch -->
+          <ToggleSwitch />
+          <!-- List of Weather Cards -->
+          <TransitionGroup name="slide-fade" tag="div">
+            <div v-for="(card, id) in storeWeatherSearchList.getWeatherCardSearchList" :key="card">
+              <WeatherCard :weatherInfo="card" :id="id" />
+            </div>
+          </TransitionGroup>
+        </div>
       </template>
     </MainLayout>
   </div>
@@ -38,8 +40,8 @@ import IAutocompleteCountry from '@/Interfaces/IAutoCompleteCountry';
 import WeatherService from '@/services/WeatherService';
 import WeatherCard from '@/components/WeatherCard.vue';
 import LoaderCircle from '@/components/animations/LoaderCircle.vue';
-import {  Ref, ref } from 'vue';
-import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore'; 
+import { Ref, ref } from 'vue';
+import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore';
 import { SystemValuesStore } from '@/store/SystemValuesStore';
 import MainLayout from '@/layouts/MainLayout.vue';
 import ToggleSwitch from '@/components/animations/ToggleSwitch.vue';
@@ -57,10 +59,10 @@ let timeout = setTimeout(() => {
 
 let responseAutoComplete: Ref<Array<IAutocompleteCountry>> = ref([]); // list of queries from the user that will be shown as a list of cards once the user click on the query result
 
-  const storeSysValues = SystemValuesStore();
+const storeSysValues = SystemValuesStore();
 
 // When the user types in the search bar it will run the fetchAutocomplete function to get the results from the api and display them in the card component
-const handleQuery = ():void => {
+const handleQuery = (): void => {
   if (query.value != "") {
     storeSysValues.setIsTyping(true);
     clearTimeout(timeout)
@@ -76,14 +78,14 @@ const handleQuery = ():void => {
 const storeWeatherSearchList = WeatherCardSearchListStore(); // WeatherCardSearchListStore
 
 let isLoading = ref(false); // Loader variable to show or hide loader for handleCardClick function
-const handleCardClick = async(id: number):Promise<void> => { // Handle fetching and storing weather forecast data based on card click events.
+const handleCardClick = async (id: number): Promise<void> => { // Handle fetching and storing weather forecast data based on card click events.
   isLoading.value = true; // Set the loader variable to true to show the loader until the data is fetched
   if (id) {
     try {
       responseAutoComplete.value = [] // Clear the responseAutoComplete value when a new card is clicked
       query.value = "" // Clear the query value
       await weatherService.fetchForecast(api_key.value, id) // Fetch the forecast data for the clicked card
-      const weatherForecast =  weatherService.getForecast();
+      const weatherForecast = weatherService.getForecast();
       storeWeatherSearchList.addCard(weatherForecast.value, id);    // Once the data is fetched store it in the WeatherCardSearchListStore
       isLoading.value = false; // Set the loader variable to false to hide the loader once the data is finally fetched
     } catch (error) {
@@ -92,26 +94,31 @@ const handleCardClick = async(id: number):Promise<void> => { // Handle fetching 
   }
 }
 
-const router = useRouter();
-const openFullForecast = (card:any, e:any) => (e.target.parentElement.id !== 'dot-menu') ? router.push({name:'fullForecast', params:{id:card.id}}) : console.log("Clicked on dot-menu"); // Open full forecast page on double click, if the user clicks on the dot menu it will not open the full forecast page
+
 
 
 </script>
 
 <style scoped>
-.slide-fade-enter-active, .slide-fade-leave-active {
+.slide-fade-enter-active,
+.slide-fade-leave-active {
   transition: all 0.5s ease;
 }
-.slide-fade-enter-from, .slide-fade-leave-to {
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
   opacity: 0;
   transform: translateX(50px);
 }
-.fade-enter-active, .fade-leave-active {
+
+.fade-enter-active,
+.fade-leave-active {
   transition: all 0.5s ease;
 }
-.fade-enter-from, .fade-leave-to {
+
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
   /* transform: translateY(-5px); */
 }
-
 </style>

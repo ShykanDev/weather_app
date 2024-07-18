@@ -13,46 +13,45 @@
 
                 <!-- Full current weather -->
                 <div class="flex flex-wrap gap-3 pb-4 justify-evenly">
-                    <div>
-                        <h2 class="text-3xl font-medium">{{ data.current.temp_c }}°C</h2>
-                    </div>
-                    <div class="flex flex-col items-center"><img :src="data.current.condition.icon" alt="">
-                        <h2 class="inline-block pl-1 pr-1 text-lg font-medium text-white bg-sky-600 rounded-2xl">{{
-                            data.current.condition.text }}</h2>
+                    <div class="flex flex-col items-center">
+                        <h2 class="">{{ data.current.temp_c }}°C</h2>
+                        <img :src="data.current.condition.icon" alt="">
+                        <h2 class="inline-block pl-1 pr-1 text-white bg-sky-600 rounded-2xl">{{ data.current.condition.text }}</h2>
                     </div>
                     <div>
-                        <h2>Wind: {{ data.current.wind_kph }} Kph</h2><v-icon name="bi-wind" scale="1.9"
-                            color="#0094d0" />
+                        <h2 class="pl-1 pr-1 rounded-md bg-slate-100 text-slate-700">Wind: {{ data.current.wind_kph }} Kph</h2><v-icon name="bi-wind" scale="2.3" color="#14B8A6" />
                     </div>
                     <div>
-                        <h2>Wind Degree: {{ data.current.wind_degree }}°</h2><v-icon name="gi-windsock" scale="1.9"
+                        <h2 class="pl-1 pr-1 rounded-md bg-slate-100 text-slate-600">Wind Degree: {{ data.current.wind_degree }}°</h2><v-icon name="gi-windsock" scale="2.3"
                             color="#ed6e00" />
                     </div>
                     <div>
-                        <h2>Wind Direction: {{ data.current.wind_dir }}</h2><v-icon name="fa-compass" scale="1.9"
+                        <h2 class="pl-1 pr-1 rounded-md text-slate-700 bg-slate-100">Wind Direction: {{ data.current.wind_dir }}</h2><v-icon name="fa-compass" scale="2.3"
                             color="#004071" />
                     </div>
                     <div>
-                        <h2>Humidity: {{ data.current.humidity }}%</h2><v-icon name="wi-humidity" scale="1.9"
+                        <h2 class="pl-1 pr-1 rounded-md text-slate-600 bg-slate-100">Humidity: {{ data.current.humidity }}%</h2><v-icon name="wi-humidity" scale="2.3"
                             color="#0dbefb" />
                     </div>
                     <div>
-                        <h2>UV Index: {{ data.current.uv }}</h2><v-icon name="hi-sun" scale="1.9" color="#fb390d" />
+                        <h2 class="pl-1 pr-1 rounded-md bg-slate-100 text-slate-600">UV Index: {{ data.current.uv }}</h2><v-icon name="hi-sun" scale="2.3" color="#fb390d" />
                     </div>
                     <div>
-                        <h2>Feels Like: {{ data.current.feelslike_c }}°C</h2><v-icon name="io-body" scale="1.9"
-                            color="#dea1ff" />
+                        <h2 class="pl-1 pr-1 mb-2 rounded-md bg-slate-100 text-slate-600">Feels Like: {{ data.current.feelslike_c }}°C</h2><v-icon name="io-body" scale="2.3"
+                            color="#f7d2ff" />
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- vfor future days -->
-        <div class="flex gap-2 overflow-x-auto">
+         <div><h2 class="text-3xl font-semibold text-slate-600">Next Days</h2></div>
+        <div class="flex gap-4 overflow-x-auto">
             <div v-for="day in data.forecast.forecastday" :key="day">
-                <div class="flex flex-col items-center w-40 gap-3 shadow-xl bg-slate-50 min-h-16 rounded-xl">
-                    <div>
-                        <h2>{{ day.date }}</h2><v-icon name="bi-calendar-minus-fill" color="#1E90FF" scale="1.6" />
+                <div class="flex flex-col items-center w-40 gap-3 pt-3 bg-white shadow-xl min-h-16 rounded-xl">
+                    <div class="flex items-center">
+                        <v-icon name="io-calendar-number" color="#7ac4ff" scale="1.6" />
+                        <h2 class="inline-block pl-1 pr-1 rounded-md text-slate-600 bg-slate-100">{{ day.date }}</h2>
                     </div>
                     <div><img :src="day.day.condition.icon" alt="weather logo"><v-icon name="" color="#A9A9A9"
                             scale="1.6" /></div>
