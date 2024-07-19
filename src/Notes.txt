@@ -14,14 +14,18 @@ Add icon delete to card [X]
 Add edit option to sidebar [--]
 Add function pinia to delete card [X]
 --
-Add a view for full forecast when user clicks on the card [--] // when user clicks on the card it will pass the id to a router link 
+Add a view for full forecast when user clicks on the card [X] // when user clicks on the card it will pass the id to a router link 
 Fix more info button for weather card to position fixed and add a high index 
 Fix the delete icon position [X]
-Add an animation for fullForecast [--]
+Add an animation for fullForecast [X]
 Add favicon to website []
-Add info to sidebar []
 Add toggle switch iOS Style [X]
 --
 Fix the function to open full weather [X]
 Add bg colors to each data of fullForecast [X]
 Fix the full forecast function from all card click to only the city name click [X]
+--
+Added a slider to switch between dark and light mode [X]
+Add change the main colors based on the mode []
+Add a lang selector to change the language [--]
+Fix colors for full forecast [//]

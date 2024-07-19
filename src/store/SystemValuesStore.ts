@@ -7,7 +7,7 @@ export const SystemValuesStore = defineStore('SystemValues',{
             isTyping: false,
             sidebarExtended:false,
             editMode: false,
-            fullForecastDataLoaded: false
+            fullForecastDataLoaded: false,
         }
     },
     getters:{
@@ -40,8 +40,8 @@ export const SystemValuesStore = defineStore('SystemValues',{
         setFullForecastDataLoaded(payload:boolean):void{ // set fullForecastDataLoaded value
             this.fullForecastDataLoaded = payload;
         }, 
-        setIsDarkMode(payload:boolean):void{ // set isDarkMode value
-            this.isDarkMode = payload;
+        setIsDarkMode():void{ // set isDarkMode value
+            this.isDarkMode = !this.isDarkMode;
         }
     }
 })

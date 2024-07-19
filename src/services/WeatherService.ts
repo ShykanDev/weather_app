@@ -6,6 +6,7 @@ class WeatherService {
     private autocomplete;
     private future;
     private marine;
+    
     constructor(){
         this.current = ref([]);
         this.autocomplete = ref([]);

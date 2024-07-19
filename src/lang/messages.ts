@@ -7,6 +7,7 @@ export const messages = {
             }
         },
         fullForecast:{
+            backToHome:"Back to Home",
             wind:"Wind",
             windDegree:"Wind Degree",
             windDirection:"Wind Direction",
@@ -33,8 +34,9 @@ export const messages = {
             }
         },
         fullForecast:{
+            backToHome:"Regresar al Inicio",
             wind:"Viento",
-            windDegree:"Grados del Viento",
+            windDegree:"Ángulo viento",
             windDirection:"Dirección del Viento",
             humidity:"Humedad",
             uvIndex:"Índice UV",
