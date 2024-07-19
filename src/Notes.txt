@@ -23,4 +23,5 @@ Add info to sidebar []
 Add toggle switch iOS Style [X]
 --
 Fix the function to open full weather [X]
-Add bg colors to each data of fullForecast [/]
+Add bg colors to each data of fullForecast [X]
+Fix the full forecast function from all card click to only the city name click [X]

@@ -7,7 +7,7 @@
           <div class="w-full">
             <input @click="handleQuery" v-model="query" @input="handleQuery"
               class="w-5/6 p-1 text-2xl text-center duration-500 shadow-md min-h-16 rounded-2xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none "
-              type="text" placeholder="Buscar">
+              type="text" :placeholder="$t('mainView.placeholder')">
           </div>
           <!-- Loader Circle -->
           <Transition name="fade">
@@ -21,7 +21,7 @@
               :country="data.country" :region="data.region" />
           </div>
           <!-- Toggle Switch -->
-          <ToggleSwitch />
+          <!-- <ToggleSwitch /> Temporary disabled until sidebar content is added -->
           <!-- List of Weather Cards -->
           <TransitionGroup name="slide-fade" tag="div">
             <div v-for="(card, id) in storeWeatherSearchList.getWeatherCardSearchList" :key="card">
@@ -44,8 +44,6 @@ import { Ref, ref } from 'vue';
 import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore';
 import { SystemValuesStore } from '@/store/SystemValuesStore';
 import MainLayout from '@/layouts/MainLayout.vue';
-import ToggleSwitch from '@/components/animations/ToggleSwitch.vue';
-import { NavigationFailure, useRouter } from 'vue-router';
 
 const api_key = ref('d7576f684b9e4e6b88070938241707'); // API Key for the weather api
 const weatherService = new WeatherService(); // instance of the weather service class

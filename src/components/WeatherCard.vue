@@ -1,10 +1,9 @@
 <template>
     <div class="flex justify-center w-full mt-5 mb-5 bg-transparent">
-            <div :style="{backgroundColor: storeSysValues.getEditMode ? '#980037' : 'white', color: storeSysValues.getEditMode ? 'white' : 'black'}" class="relative w-11/12 pt-4 overflow-auto text-white transition-colors duration-150 ease-out shadow-xl rounded-2xl font-poppins backdrop-blur-none"> 
+            <div :style="{backgroundColor: storeSysValues.getEditMode ? '#74001c' : 'white', color: storeSysValues.getEditMode ? 'white' : 'black'}" class="relative w-11/12 pt-4 overflow-auto text-white transition-colors duration-150 ease-out shadow-xl rounded-2xl font-poppins backdrop-blur-none"> 
             <!-- container city name and country -->
-            <v-icon @click="storeWeatherSearchList.deleteCard(props.id)" v-if="storeSysValues.getEditMode" class="fixed z-30 cursor-pointer right-2 top-[6%]" name="md-deleteforever-round" color="white" scale="2" animation="ring" speed="slow"/>
             <div class="flex justify-around ">
-                <h2 @click="openFullForecast(props.weatherInfo.id)"  class="text-lg font-medium underline cursor-pointer" >{{props.weatherInfo.location.name}}</h2>
+                <h2 @click="openFullForecast(props.weatherInfo.id)"  class="text-lg font-medium underline cursor-pointer text-slate-700" :style="{color: storeSysValues.getEditMode ? 'white' : 'black'}" >{{props.weatherInfo.location.name}}</h2>
                 <h3>{{ props.weatherInfo.location.country}}</h3>
             </div>
             <!-- container current weather -->
@@ -16,7 +15,7 @@
               <div>
                 <!-- final container -->
             </div>
-                <div class="relative flex items-center justify-center " v-if="props.weatherInfo.forecast.forecastday[0]">
+                <div class="relative flex flex-wrap items-center justify-center pr-3" v-if="props.weatherInfo.forecast.forecastday[0]">
                     <h3>Max: {{ props.weatherInfo.forecast.forecastday[0].day.maxtemp_c }}°</h3><v-icon scale="1.3" name="io-trending-up" />
                     <v-icon scale="1.3" name="la-grip-lines-vertical-solid" />
                     <h3 class=""><v-icon scale="1.3" name="io-trending-down" />Min: {{ props.weatherInfo.forecast.forecastday[0].day.mintemp_c}}°</h3>

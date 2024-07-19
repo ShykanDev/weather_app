@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 export const SystemValuesStore = defineStore('SystemValues',{
     state() {
         return{
+            isDarkMode: false,
             isTyping: false,
             sidebarExtended:false,
             editMode: false,
@@ -21,6 +22,9 @@ export const SystemValuesStore = defineStore('SystemValues',{
         },
         getFullForecastDataLoaded():boolean{ // return fullForecastDataLoaded value
             return this.fullForecastDataLoaded;
+        },
+        getIsDarkMode():boolean{ // return isDarkMode value
+            return this.isDarkMode;
         }
     },
     actions:{
@@ -35,6 +39,9 @@ export const SystemValuesStore = defineStore('SystemValues',{
         },
         setFullForecastDataLoaded(payload:boolean):void{ // set fullForecastDataLoaded value
             this.fullForecastDataLoaded = payload;
+        }, 
+        setIsDarkMode(payload:boolean):void{ // set isDarkMode value
+            this.isDarkMode = payload;
         }
     }
 })
