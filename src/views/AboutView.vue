@@ -5,14 +5,17 @@
         <div class="pb-20 overflow-x-hidden">
           <!-- Search Bar -->
           <div class="relative w-full">
-            <input @click="handleQuery" v-model="query" @input="handleQuery"  :class="`${sysColorsStore.getCardBackgroundWhiteOrBlack} ${sysColorsStore.getTextPlaceholderWhiteOrBlack}  ${sysColorsStore.getTextWhiteOrBlack} `"  class="w-5/6 p-1 text-2xl text-center duration-500 shadow-md min-h-16 rounded-2xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none"  type="text" :placeholder="$t('mainView.placeholder')">
+            <input @click="handleQuery" v-model="query" @input="handleQuery"
+              :class="`${sysColorsStore.getCardBackgroundWhiteOrBlack} ${sysColorsStore.getTextPlaceholderWhiteOrBlack}  ${sysColorsStore.getTextWhiteOrBlack} `"
+              class="w-5/6 p-1 text-2xl text-center duration-500 shadow-md min-h-16 rounded-2xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none"
+              type="text" :placeholder="$t('mainView.placeholder')">
+            <!-- Loader Circle -->
+            <Transition name="fade-up">
+              <div v-if="isLoading" class="absolute top-1 right-[10%] ">
+                <LoaderCircle />
+              </div>
+            </Transition>
           </div>
-          <!-- Loader Circle -->
-          <Transition name="fade-up">
-            <div v-if="isLoading" class="flex justify-center mt-4">
-              <LoaderCircle />
-            </div>
-          </Transition>
           <!-- Autocomlete List Cards -->
           <div v-for="data in responseAutoComplete" :key="data.id">
             <AutoCompleteCard @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name"
@@ -116,6 +119,7 @@ const sysColorsStore = SystemColorsStore();
   opacity: 0;
   /* transform: translateY(-5px); */
 }
+
 .fade-up-enter-active,
 .fade-up-leave-active {
   transition: all 0.5s ease;
@@ -124,6 +128,6 @@ const sysColorsStore = SystemColorsStore();
 .fade-up-enter-from,
 .fade-up-leave-to {
   opacity: 0;
-  transform: translateY(-30px);
+  transform: translateY(2px);
 }
 </style>

@@ -5,7 +5,7 @@
       <template #main>
         <div class="flex justify-center">
             <LoaderCircle v-if="!SystemValuesStore().getFullForecastDataLoaded"/>
-        </div>
+        </div> 
         <FullForecastCard  :id="Number(router.params.id)"  />
       </template>
     </MainLayout>

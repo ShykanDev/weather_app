@@ -19,7 +19,7 @@
                     <h3>Max: {{ props.weatherInfo.forecast.forecastday[0].day.maxtemp_c }}°</h3><v-icon scale="1.3" name="io-trending-up" />
                     <v-icon scale="1.3" name="la-grip-lines-vertical-solid" />
                     <h3 class=""><v-icon scale="1.3" name="io-trending-down" />Min: {{ props.weatherInfo.forecast.forecastday[0].day.mintemp_c}}°</h3>
-                    <div @click="openMoreInfo" class="absolute bottom-0 right-0 z-40"> <DotMenu  /> </div>
+                    <div @click="openMoreInfo" class="absolute bottom-0 right-0 z-10"> <DotMenu  /> </div>
                 </div>
             <!-- <MoreInfoCard class="transition-opacity duration-300 ease-out" :weatherInfo="props.weatherInfo" :id="props.id" :style="{opacity: toggleMoreInfo ? 1 : 0, zIndex: toggleMoreInfo ? 1 : -10}" />  -->
              <Transition name="fade">
@@ -33,11 +33,8 @@
 import { defineProps, ref } from 'vue';
 import MoreInfoCard from '@/components/MoreInfoCard.vue'
 import DotMenu from './animations/DotMenu.vue';
-import { SystemValuesStore } from '@/store/SystemValuesStore';
 import { useRouter } from 'vue-router';
 import { SystemColorsStore } from '@/store/SystemColorsStore';
-
-const storeSysValues = SystemValuesStore(); // Instance of SystemValuesStore
 
 const props = defineProps({ //Props received from main result (all weather data)
     weatherInfo:{

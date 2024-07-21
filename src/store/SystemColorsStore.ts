@@ -8,7 +8,7 @@ export const SystemColorsStore = defineStore("SystemColorStore", {
     backgroundWhiteOrBlack: "bg-white", 
     whiteOrBlackOnTheme: "black",
     textWhiteOrBlack: "text-black",
-    textPlaceholderWhiteOrBlack: "placeholder-sky-800",
+    textPlaceholderWhiteOrBlack: "placeholder-slate-600",
     textGrayOrWhite: "text-[#9CA3AF]",
     textWhiteOrBlue: "text-white",
     cardBackgroundWhiteOrBlack: "bg-white",
@@ -81,7 +81,7 @@ export const SystemColorsStore = defineStore("SystemColorStore", {
       this.colorBlueOrWhiteOnTheme = "bg-[#003b71]";
       this.backgroundShadowAndBorder = "border-none shadow-xl";
       this.colorCBlueOrWhite = "#0369A1";
-      this.textPlaceholderWhiteOrBlack = "placeholder-sky-800";
+      this.textPlaceholderWhiteOrBlack = "placeholder-slate-6001";
     },
     setDarkMode(): void {
       this.setIsDarkMode();
