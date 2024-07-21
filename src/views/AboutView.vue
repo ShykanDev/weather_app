@@ -4,24 +4,20 @@
       <template #main>
         <div class="pb-20 overflow-x-hidden">
           <!-- Search Bar -->
-          <div class="w-full">
-            <input @click="handleQuery" v-model="query" @input="handleQuery"
-              class="w-5/6 p-1 text-2xl text-center duration-500 shadow-md min-h-16 rounded-2xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none "
-              type="text" :placeholder="$t('mainView.placeholder')">
+          <div class="relative w-full">
+            <input @click="handleQuery" v-model="query" @input="handleQuery"  :class="`${sysColorsStore.getCardBackgroundWhiteOrBlack} ${sysColorsStore.getTextPlaceholderWhiteOrBlack}  ${sysColorsStore.getTextWhiteOrBlack} `"  class="w-5/6 p-1 text-2xl text-center duration-500 shadow-md min-h-16 rounded-2xl focus:rounded-b-none transition-width focus:w-11/12 focus:outline-none"  type="text" :placeholder="$t('mainView.placeholder')">
           </div>
           <!-- Loader Circle -->
-          <Transition name="fade">
+          <Transition name="fade-up">
             <div v-if="isLoading" class="flex justify-center mt-4">
               <LoaderCircle />
             </div>
           </Transition>
           <!-- Autocomlete List Cards -->
           <div v-for="data in responseAutoComplete" :key="data.id">
-            <AutoCompleteCard class="" @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name"
+            <AutoCompleteCard @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name"
               :country="data.country" :region="data.region" />
           </div>
-          <!-- Toggle Switch -->
-          <!-- <ToggleSwitch /> Temporary disabled until sidebar content is added -->
           <!-- List of Weather Cards -->
           <TransitionGroup name="slide-fade" tag="div">
             <div v-for="(card, id) in storeWeatherSearchList.getWeatherCardSearchList" :key="card">
@@ -44,6 +40,7 @@ import { Ref, ref } from 'vue';
 import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore';
 import { SystemValuesStore } from '@/store/SystemValuesStore';
 import MainLayout from '@/layouts/MainLayout.vue';
+import { SystemColorsStore } from '@/store/SystemColorsStore';
 
 const api_key = ref('d7576f684b9e4e6b88070938241707'); // API Key for the weather api
 const weatherService = new WeatherService(); // instance of the weather service class
@@ -92,7 +89,7 @@ const handleCardClick = async (id: number): Promise<void> => { // Handle fetchin
   }
 }
 
-
+const sysColorsStore = SystemColorsStore();
 
 
 </script>
@@ -118,5 +115,15 @@ const handleCardClick = async (id: number): Promise<void> => { // Handle fetchin
 .fade-leave-to {
   opacity: 0;
   /* transform: translateY(-5px); */
+}
+.fade-up-enter-active,
+.fade-up-leave-active {
+  transition: all 0.5s ease;
+}
+
+.fade-up-enter-from,
+.fade-up-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
 }
 </style>

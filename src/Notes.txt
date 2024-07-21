@@ -26,6 +26,11 @@ Add bg colors to each data of fullForecast [X]
 Fix the full forecast function from all card click to only the city name click [X]
 --
 Added a slider to switch between dark and light mode [X]
-Add change the main colors based on the mode []
-Add a lang selector to change the language [--]
-Fix colors for full forecast [//]
+Add change the main colors based on the mode [//]
+Add a lang selector to change the language [X]
+Fix colors for full forecast [X]
+
+--
+Add values to storeSysValues to store the colors list [X]
+Fix delete card function by clicking on the delete icon [//]
+Fix the function to toggle more info by adding it to system store values [//]
