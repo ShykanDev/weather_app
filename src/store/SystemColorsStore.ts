@@ -16,6 +16,7 @@ export const SystemColorsStore = defineStore("SystemColorStore", {
     colorBlueOrWhite:"text-white", 
     colorCBlueOrWhite:"#0369A1",
     colorBlueOrWhiteOnTheme:"bg-[#003b71]",
+    colorWhiteOrBlueOnTheme:"#003B71",
     backgroundShadowAndBorder: "border-none shadow-xl"
   }),
   getters: {
@@ -61,7 +62,9 @@ export const SystemColorsStore = defineStore("SystemColorStore", {
     getTextPlaceholderWhiteOrBlack(): string {
       return this.textPlaceholderWhiteOrBlack;
     },
-
+    getColorWhiteOrBlueOnTheme(): string {
+      return this.colorWhiteOrBlueOnTheme;
+    }
   },
   actions: {
     setIsDarkMode(): void {
@@ -82,6 +85,7 @@ export const SystemColorsStore = defineStore("SystemColorStore", {
       this.backgroundShadowAndBorder = "border-none shadow-xl";
       this.colorCBlueOrWhite = "#0369A1";
       this.textPlaceholderWhiteOrBlack = "placeholder-slate-6001";
+      this.colorWhiteOrBlueOnTheme = "#003B71";
     },
     setDarkMode(): void {
       this.setIsDarkMode();
@@ -98,6 +102,7 @@ export const SystemColorsStore = defineStore("SystemColorStore", {
       this.backgroundShadowAndBorder = "border border-solid shadow-lg border-sky-900 shadow-sky-950";
       this.colorCBlueOrWhite = "#F9F9F9";
       this.textPlaceholderWhiteOrBlack = "placeholder-slate-100";
+      this.colorWhiteOrBlueOnTheme = "#F9F9F9";
     },
     setThemeMode(): void {
       if (!this.isDarkMode) {
