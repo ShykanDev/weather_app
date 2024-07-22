@@ -8,6 +8,7 @@ export const SystemValuesStore = defineStore('SystemValues',{
             sidebarExtended:false,
             editMode: false,
             fullForecastDataLoaded: false,
+            currentLang:'es'
         }
     },
     getters:{
@@ -25,6 +26,9 @@ export const SystemValuesStore = defineStore('SystemValues',{
         },
         getIsDarkMode():boolean{ // return isDarkMode value
             return this.isDarkMode;
+        },
+        getCurrentLang():string{
+            return this.currentLang;
         }
     },
     actions:{
@@ -42,6 +46,9 @@ export const SystemValuesStore = defineStore('SystemValues',{
         }, 
         setIsDarkMode():void{ // set isDarkMode value
             this.isDarkMode = !this.isDarkMode;
+        },
+        setCurrentLang(payload:string):void{
+            this.currentLang = payload;
         }
     }
 })

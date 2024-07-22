@@ -78,11 +78,13 @@ const storeWeatherSearchList = WeatherCardSearchListStore(); // WeatherCardSearc
 let isLoading = ref(false); // Loader variable to show or hide loader for handleCardClick function
 const handleCardClick = async (id: number): Promise<void> => { // Handle fetching and storing weather forecast data based on card click events.
   isLoading.value = true; // Set the loader variable to true to show the loader until the data is fetched
+  console.log(SystemValuesStore().getCurrentLang);
+  
   if (id) {
     try {
       responseAutoComplete.value = [] // Clear the responseAutoComplete value when a new card is clicked
       query.value = "" // Clear the query value
-      await weatherService.fetchForecast(api_key.value, id) // Fetch the forecast data for the clicked card
+      await weatherService.fetchForecast(api_key.value, id, SystemValuesStore().getCurrentLang) // Fetch the forecast data for the clicked card
       const weatherForecast = weatherService.getForecast();
       storeWeatherSearchList.addCard(weatherForecast.value, id);    // Once the data is fetched store it in the WeatherCardSearchListStore
       isLoading.value = false; // Set the loader variable to false to hide the loader once the data is finally fetched

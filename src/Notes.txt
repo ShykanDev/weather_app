@@ -26,11 +26,18 @@ Add bg colors to each data of fullForecast [X]
 Fix the full forecast function from all card click to only the city name click [X]
 --
 Added a slider to switch between dark and light mode [X]
-Add change the main colors based on the mode [//]
+Add change the main colors based on the mode [X]
 Add a lang selector to change the language [X]
 Fix colors for full forecast [X]
 
 --
 Add values to storeSysValues to store the colors list [X]
-Fix delete card function by clicking on the delete icon [//]
-Fix the function to toggle more info by adding it to system store values [//]
+Fix delete card function by clicking on the delete icon [X]
+Fix the function to toggle more info by adding it to system store values [X]
+--
+
+Add a lang value to SystemValuesStore with its setter and getter [X]
+Modify the FullForecastFetch to receive lang as param [X]
+Set the current language value from SystemValuesStore when user changes the language (select option HTML) [X]
+Show a temporal value to the main to reflect if current language is changin []
+

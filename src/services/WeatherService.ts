@@ -53,9 +53,9 @@ class WeatherService {
     }
    }
 
-   async fetchForecast(api_key:string,id:number, days=7, aqi='no', alerts='no'){
+   async fetchForecast(api_key:string,id:number, lang:string, days=7, aqi='no', alerts='no'){
     try {
-        const url =`https://api.weatherapi.com/v1/forecast.json?key=${api_key}&q=id:${id}&days=${days}&aqui=${aqi}&alerts=${alerts}&lang=es`
+        const url =`https://api.weatherapi.com/v1/forecast.json?key=${api_key}&q=id:${id}&days=${days}&aqui=${aqi}&alerts=${alerts}&lang=${lang}`
         const res = await fetch(url);
         const json = await res.json();
         this.forecast.value = json;

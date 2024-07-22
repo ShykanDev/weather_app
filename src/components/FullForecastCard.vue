@@ -152,7 +152,7 @@ const api_key = 'd7576f684b9e4e6b88070938241707';
 let data = ref();
 
 const retrieveFullForecast = async (): Promise<any> => {
-    await weatherService.fetchForecast(api_key, props.id)
+    await weatherService.fetchForecast(api_key, props.id,SystemValuesStore().getCurrentLang)
     data.value = weatherService.getForecast().value;
     if (data.value) storeSysValues.setFullForecastDataLoaded(true);
 }
