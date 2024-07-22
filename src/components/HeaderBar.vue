@@ -5,7 +5,7 @@
         <!-- Container app name -->
         <div class="relative flex items-center justify-center gap-1 jus">
             <v-icon class="absolute -left-8 top-[1px]" scale="1.7" name="wi-day-cloudy" :color="sysColorStore.getWhiteOrBlackOnTheme" />
-            <RouterLink :to="{ name: 'about' }">
+            <RouterLink :to="{ name: 'home' }">
                 <h1 :class="sysColorStore.getTextWhiteOrBlack" class="text-2xl font-poppins">Weathy App</h1>
             </RouterLink>
         </div>

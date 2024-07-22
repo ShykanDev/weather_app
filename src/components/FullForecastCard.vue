@@ -1,7 +1,7 @@
 <template>
     <Transition name="slide">
         <div v-if="data">
-            <RouterLink v-if="data" :to="{ name: 'about' }">
+            <RouterLink v-if="data" :to="{ name: 'home' }">
                 <div :class="sysColorsStore.getTextWhiteOrBlack" class="flex items-center"><v-icon
                         name="bi-arrow-left-square" scale="1.3" />
                     <p>{{ $t('fullForecast.backToHome') }}</p>
