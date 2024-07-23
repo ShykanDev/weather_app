@@ -22,26 +22,36 @@
               :country="data.country" :region="data.region" />
           </div>
           <!-- Main Message  -->
-           <Transition name="fade-up">
-            <div class="absolute left-[5%] right-[5%] translate-x[-50%] flex flex-col " v-if="query.length < 1 && storeWeatherSearchList.getWeatherCardSearchList.length < 1">
+          <Transition name="fade-up">
+            <div class="absolute left-[5%] right-[5%] translate-x[-50%] flex flex-col "
+              v-if="query.length < 1 && storeWeatherSearchList.getWeatherCardSearchList.length < 1">
               <MainMessage />
             </div>
           </Transition>
           <!-- List of Weather Cards Demo -->
-           <div class="flex gap-4 overflow-x-auto pt-5 pb-5 ">//quiero que sea auto pero que tambien esté oculto
-             <IWeatherCard/>
-             <IWeatherCard/>
-             <IWeatherCard/>
-             <IWeatherCard/>
-             <IWeatherCard/>
-           </div>
+          <div class="overflow-auto scrollbar-hide w-[950%]">
+            <div class="flex pt-5 pb-5 animate-toLeft120 bg-red-700 gap-3">
+              <!-- Repetir el contenido para un efecto continuo -->
+              <IWeatherCard />
+              <IWeatherCard />
+              <IWeatherCard />
+              <IWeatherCard />
+              <IWeatherCard />
+              <IWeatherCard />
+              <IWeatherCard />
+              <IWeatherCard />
+              <IWeatherCard />
+              <IWeatherCard />
+    
+            </div>
+          </div>
           <!-- List of Weather Cards -->
           <TransitionGroup name="slide-fade" tag="div">
             <div v-for="(card, id) in storeWeatherSearchList.getWeatherCardSearchList" :key="card">
               <WeatherCard :weatherInfo="card" :id="id" />
             </div>
           </TransitionGroup>
-          
+
         </div>
       </template>
     </MainLayout>
@@ -60,7 +70,7 @@ import { SystemValuesStore } from '@/store/SystemValuesStore';
 import MainLayout from '@/layouts/MainLayout.vue';
 import { SystemColorsStore } from '@/store/SystemColorsStore';
 import MainMessage from '@/components/MainMessage.vue';
-import IWeatherCard from '@/components/initial/IWeatherCard.vue';
+import IWeatherCard from '@/components/Initial/IWeatherCard.vue';
 
 const api_key = ref('d7576f684b9e4e6b88070938241707'); // API Key for the weather api
 const weatherService = new WeatherService(); // instance of the weather service class
@@ -96,7 +106,7 @@ let isLoading = ref(false); // Loader variable to show or hide loader for handle
 const handleCardClick = async (id: number): Promise<void> => { // Handle fetching and storing weather forecast data based on card click events.
   isLoading.value = true; // Set the loader variable to true to show the loader until the data is fetched
   console.log(SystemValuesStore().getCurrentLang);
-  
+
   if (id) {
     try {
       responseAutoComplete.value = [] // Clear the responseAutoComplete value when a new card is clicked

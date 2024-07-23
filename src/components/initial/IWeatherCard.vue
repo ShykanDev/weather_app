@@ -1,6 +1,6 @@
 <template>
-    <div class="flex justify-center w-full mt-5 mb-5 bg-transparent">
-        <div :class="`${sysColorsStore.getCardWeatherBackgroundWhiteOrBlack} ${sysColorsStore.getTextWhiteOrBlack} ${sysColorsStore.getBackgroundShadowAndBorder}`" class="relative min-w-80 w-11/12 pt-4 overflow-auto transition-colors duration-150 ease-out rounded-2xl font-poppins">
+    <div class=" mt-5 mb-5 bg-transparent">
+        <div :class="`${sysColorsStore.getCardWeatherBackgroundWhiteOrBlack} ${sysColorsStore.getTextWhiteOrBlack} ${sysColorsStore.getBackgroundShadowAndBorder}`" class="relative w-[80vw] pt-4 overflow-auto transition-colors duration-150 ease-out rounded-2xl font-poppins ">
             <!-- container city name and country -->
             <div class="flex justify-around">
                 <h2 :class="sysColorsStore.getTextWhiteOrBlack" class="text-lg font-medium underline cursor-pointer">{{ props.locationName }}</h2>
@@ -77,9 +77,4 @@ const props = defineProps({
 
 <style scoped>
 /* Agrega tus estilos aquí */
-</style>
-
-
-<style scoped>
-
 </style>
