@@ -11,7 +11,6 @@ Add values (Getters Setters) for click sideBarExtended to SystemValuesStore [X]
 Add a router link to weathy app logo (HeaderBar>H1) [X] 
 Convert div sidebar to a component [X]
 Add icon delete to card [X]
-Add edit option to sidebar [--]
 Add function pinia to delete card [X]
 --
 Add a view for full forecast when user clicks on the card [X] // when user clicks on the card it will pass the id to a router link 
@@ -46,4 +45,7 @@ Add a component for initial view when user's query is empty [X]
 Add a store to save the initial cards simulated array [X]
 --
 
-Fix the position of the initial demo weather cards [//] 
+Fix the position of the initial demo weather cards [X] 
+--
+
+Fix the color of the main welcome message [//]

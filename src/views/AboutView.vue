@@ -21,17 +21,12 @@
             <AutoCompleteCard @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name"
               :country="data.country" :region="data.region" />
           </div>
-          <!-- Main Message  -->
           <Transition name="fade-up">
-            <div class="absolute left-[5%] right-[5%] translate-x[-50%] flex flex-col "
-              v-if="query.length < 1 && storeWeatherSearchList.getWeatherCardSearchList.length < 1">
-              <MainMessage />
-            </div>
-          </Transition>
-          <div class="fixed bottom-0 left-0 right-0">
+          <!-- Demo Weather Cards  -->
+          <div class="fixed top-[20%] left-0 right-0"  v-if="query.length < 1 && storeWeatherSearchList.getWeatherCardSearchList.length < 1">
           <!-- List of Weather Cards Demo to Left -->
-          <div class="overflow-auto scrollbar-hide w-[950%] ">
-            <div class="flex pt-5 pb-5 animate-toLeft120 gap-3">
+          <div class="overflow-auto scrollbar-hide w-[950%] pb-4">
+            <div class="flex animate-toLeft120 gap-3">
               <div v-for="data in SimulatedDataStore().getSimulatedWeatherData" :key="data.locationName"> 
                 <IWeatherCard :countryName="data.countryName" :locationName="data.locationName"  :temperature="data.temperature" :weatherConditionEs="data.weatherConditionEs" :weatherConditionEn="data.weatherConditionEn" :maxTemperature="data.maxTemperature" :minTemperature="data.minTemperature" />
               </div>
@@ -39,13 +34,14 @@
           </div>
           <!-- List of Weather Cards Demo to Right -->
           <div class="overflow-auto scrollbar-hide w-[918%] ">
-            <div class="flex pt-5 pb-5 animate-toRight120 gap-3">
+            <div class="flex animate-toRight120 gap-3 pb-4">
               <div v-for="data in SimulatedDataStore().getSimulatedWeatherData2" :key="data.locationName"> 
                 <IWeatherCard :countryName="data.countryName" :locationName="data.locationName"  :temperature="data.temperature" :weatherConditionEs="data.weatherConditionEs" :weatherConditionEn="data.weatherConditionEn" :maxTemperature="data.maxTemperature" :minTemperature="data.minTemperature" />
               </div>
             </div>
           </div>
           </div>
+        </Transition>
           <!-- List of Weather Cards -->
           <TransitionGroup name="slide-fade" tag="div">
             <div v-for="(card, id) in storeWeatherSearchList.getWeatherCardSearchList" :key="card">
