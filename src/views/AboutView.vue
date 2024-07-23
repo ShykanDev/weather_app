@@ -28,6 +28,7 @@
               <MainMessage />
             </div>
           </Transition>
+          <div class="fixed bottom-0 left-0 right-0">
           <!-- List of Weather Cards Demo to Left -->
           <div class="overflow-auto scrollbar-hide w-[950%] ">
             <div class="flex pt-5 pb-5 animate-toLeft120 gap-3">
@@ -43,6 +44,7 @@
                 <IWeatherCard :countryName="data.countryName" :locationName="data.locationName"  :temperature="data.temperature" :weatherConditionEs="data.weatherConditionEs" :weatherConditionEn="data.weatherConditionEn" :maxTemperature="data.maxTemperature" :minTemperature="data.minTemperature" />
               </div>
             </div>
+          </div>
           </div>
           <!-- List of Weather Cards -->
           <TransitionGroup name="slide-fade" tag="div">

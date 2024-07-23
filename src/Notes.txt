@@ -43,4 +43,7 @@ Set the current language value from SystemValuesStore when user changes the lang
 
 Add a favicon to website [X]
 Add a component for initial view when user's query is empty [X]
-Add a store to save the initial cards simulated array [//]
+Add a store to save the initial cards simulated array [X]
+--
+
+Fix the position of the initial demo weather cards [//] 
