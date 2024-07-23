@@ -12,7 +12,7 @@
     <Transition name="fade">
         <div v-if="data" class="w-full font-poppins">
             <!-- full current -->
-            <div class="p-2 overflow-x-auto">
+            <div class="p-2 overflow-x-auto pb-9">
                 <div :class="`${sysColorsStore.getCardWeatherBackgroundWhiteOrBlack} ${sysColorsStore.getBackgroundShadowAndBorder}`"
                     class="flex flex-col w-full transition-colors duration-300 ease-out shadow-sm min-h-40 rounded-xl">
                     <!-- City and time -->
@@ -83,7 +83,7 @@
 
             <!-- vfor future days -->
             <div>
-                <h2 :class="sysColorsStore.getTextWhiteOrBlack" class="text-2xl font-semibold">{{
+                <h2 :class="sysColorsStore.getTextWhiteOrBlack" class="text-2xl font-semibold pb-3">{{
                     $t('fullForecast.nextDays.nextDays') }}:</h2>
             </div>
             <div class="flex gap-4 overflow-x-auto">

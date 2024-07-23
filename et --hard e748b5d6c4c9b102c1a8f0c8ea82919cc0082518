@@ -1,0 +1,251 @@
+[33mcommit e748b5d6c4c9b102c1a8f0c8ea82919cc0082518[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Mon Jul 22 14:21:04 2024 -0600
+
+    --Added lang value to SystemValuesStore with setter and getter
+    
+    --Modified FullForecastFetch to receive lang as parameter
+    
+    --Set current language value from SystemValuesStore when user changes language (LangSelector component)
+
+[33mcommit d0b8ecf06e0552e7f4e8d2a2eaee2d321fea35d4[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Mon Jul 22 13:36:56 2024 -0600
+
+    Fixed the initial oage from default to main weather
+
+[33mcommit af82f404c1056b35ac68de67c5d53ef55c5d7660[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Sun Jul 21 23:10:04 2024 -0600
+
+    Fixed the icons colors based on theme mode
+
+[33mcommit 5a4068fc1196708685f2f2d06d9e3ade5c945228[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Sat Jul 20 23:52:28 2024 -0600
+
+    Fixed UI elements and started with dark mode in full forecast view
+
+[33mcommit 78d557954f545c0e852f39bef7383272c196c0b0[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Sat Jul 20 21:59:29 2024 -0600
+
+    Added fixes to UI and added a dark an white mode
+
+[33mcommit 7f1e821f58da5f70c57e691f64e063839569c935[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Fri Jul 19 12:38:42 2024 -0600
+
+    Added a lang selection and UI improvements to Header Bar
+
+[33mcommit e52292da0e4057319df37380e2f3225d794af56b[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Thu Jul 18 20:06:04 2024 -0600
+
+    - Added multilanguage support
+    - Full Forecast Card UI improvements
+    - WeatherCard UI improvements
+
+[33mcommit 8d13a724e6d8d1f0739280851c7cd79e01670daa[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Thu Jul 18 01:05:32 2024 -0600
+
+    Fixed function to see full forecast and UI Improvements
+
+[33mcommit daad03cd8df299a5dc70f80915ff131160067ea5[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Wed Jul 17 12:47:57 2024 -0600
+
+    Fixed open full weather function, dblclick now not works in dot menu
+
+[33mcommit 0f52bb190144181acc8f9895916fe6d33ea7db96[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Wed Jul 17 02:49:52 2024 -0600
+
+    Function to fetch full forecast added, with styles
+
+[33mcommit 60a8f9d4adc3794da149948e379761edc0c01ff9[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Wed Jul 17 00:54:49 2024 -0600
+
+    Added the full forecast items(styling)pending function
+
+[33mcommit 2b48aa667921df2a6f7f05c7bb5c320bc59993d6[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Tue Jul 16 18:54:39 2024 -0600
+
+    Edited function addCard from storeWeatherApi to push also its id value
+
+[33mcommit a52f35b664f91fc118ad473c82e49b6c743bf16a[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Tue Jul 16 18:38:41 2024 -0600
+
+    Added a button to delete cards and its functionality
+
+[33mcommit bee8c0a0195414145e33f42bd7a77c4093befbd9[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Tue Jul 16 02:13:11 2024 -0600
+
+    - Add a router link to Weather app logo (HeaderBar > H1)
+    - Convert div sidebar to a component
+    - Add delete icon to WeatherCard
+    - Add function in Pinia to delete card
+    - Add edit option to sidebar (in progress)
+    - UI bug fixes related to main content
+
+[33mcommit 97a058761cc4213ee46a8247ef7ee06825466448[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Mon Jul 15 18:25:40 2024 -0600
+
+    Fixed the sidebar behavior by changin its values to a pinia store
+
+[33mcommit 5ed8929ef250f6b7918ae2784eac4d45639dae7a[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Mon Jul 15 17:26:18 2024 -0600
+
+    Migrated isTyping and sidebarExtended to Pinia store, added MainLayout with HeaderBar and main content slot
+    
+    - Created SystemValuesStore to manage isTyping and sidebarExtended states
+    - Updated HeaderBar.vue to use the new Pinia store for isTyping
+    - Updated SideBar.vue to use the new Pinia store for sidebarExtended
+    - Added new component TopHamMenu.vue
+    - Added new layout MainLayout.vue which includes HeaderBar and a slot for main content
+    - Updated router/index.ts to include new routes
+    - Updated WeatherService.ts with necessary changes
+    - Modified AboutView.vue to use the new layout and store
+    - Added new view FullForecast.vue
+    - Updated DotMenu.vue with relevant changes
+    
+    Notes:
+    - Further fixes and improvements needed for MainLayout
+
+[33mcommit 14878fd20b3006bf512e766232abf7734f876a3d[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Sun Jul 14 01:33:06 2024 -0600
+
+    Fixed colors of the main view, edited icons colors
+
+[33mcommit eba6a12d1cd7dc1ad62be1d031855222a299404d[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Sat Jul 13 14:06:31 2024 -0700
+
+    Borrado de la versión anterior para actualización
+
+[33mcommit 34a1f37edd3c29b13d5577d8dd12bc456628246b[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Sat Jul 13 13:36:19 2024 -0700
+
+    first commit
+
+[33mcommit 7d0aea969536807d0f3c3aa1676022cf3b477d24[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Sat Jul 13 13:30:06 2024 -0700
+
+    Fixed branch
+
+[33mcommit 5feca739bb15f51d7ab6034b821fc3f993e04b55[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Sat Jul 13 01:05:09 2024 -0700
+
+    Initial Deploy
+
+[33mcommit 4efd76482d5a3b90fbc40094239904329da71630[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Fri Jul 12 01:16:08 2024 -0700
+
+    added persist,a function that validates if is user first run
+
+[33mcommit de17bac5592ea8f74bd4c6dee8fe7c4d802a0407[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Fri Jul 12 00:46:31 2024 -0700
+
+    Installed via npm pinia and pinia plugin persisted state
+
+[33mcommit e5dfe49798fc3909443e27d6b8211b1b253ad20c[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Fri Jul 12 00:43:31 2024 -0700
+
+    - Added function if is the first time using the app will add cards to the search list automatically, also the placeholder will be showing the current location of each card.
+
+[33mcommit e43371efa646a136517ccb78a3ffdf7ff9377626[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Thu Jul 11 22:48:59 2024 -0700
+
+    - Fixed the function when the user clicks on the query result card, that doesn't close the search bar correctly.
+    - Added a loader animation when the user clicks on the query result card.
+    - Improved the styles of comments in the code.
+
+[33mcommit 98f85cc8934340b6d2eba6673ca2dbe6c9f2b17a[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Thu Jul 11 19:01:31 2024 -0700
+
+    Added components to more info card, added the top bar, and function for click on more info card
+
+[33mcommit 673849fb4f737a23d4445186e63cce7e2446a7e8[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Thu Jul 11 00:19:12 2024 -0700
+
+    Fixed the function that adds the data when user clicks on a result query, and fixed the getForecast service for API call
+
+[33mcommit eb3279257c47912d89fe68251f8a67c8c673d6bb[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Wed Jul 10 22:59:10 2024 -0700
+
+    Added the function that adds (with temp info) the card to the list of cars to pinia variable
+
+[33mcommit 00d3480e2b161a65075c219e0a2083b1ab17a977[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Wed Jul 10 22:30:06 2024 -0700
+
+    Added overflow auto to entire app, added handle blur function, finished styles for weather card
+
+[33mcommit a2f78054d757ab481d4578c126253247018ca55e[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Wed Jul 10 21:55:47 2024 -0700
+
+    Modifed styles for weather card
+
+[33mcommit 09c20814be54baa4e45fb2aa16ca3de6829e6c39[m
+Merge: b76c6b5 4c9ec46
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Wed Jul 10 19:19:25 2024 -0700
+
+    Merge branch 'main' of https://github.com/ShykanDev/weather_app
+    Changing from master to main branch
+
+[33mcommit b76c6b5a65fbace206f27b36990072c3b979da09[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Wed Jul 10 19:18:27 2024 -0700
+
+    Initial styles for components-WeatherCard
+
+[33mcommit 4c9ec46f6d8be26fa560648b609091be75921555[m
+Author: ShykanDev <awscodeapp@gmail.com>
+Date:   Wed Jul 10 18:14:56 2024 -0700
+
+    Update README.md
+
+[33mcommit 94187c105b18de7af727df0efe1dbe8805fd489f[m
+Merge: 225f1ed cb59acf
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Wed Jul 10 18:14:07 2024 -0700
+
+    Fixed merge
+
+[33mcommit 225f1ed763dd5d8769d641ec8d822a16ab5c9e14[m[33m ([m[1;32mmaster[m[33m)[m
+Author: ShknDev <awscodeapp@gmail.com>
+Date:   Wed Jul 10 16:37:25 2024 -0700
+
+    fixed search location function
+
+[33mcommit cb59acf2d0f6c6d1967f6d20fd36baf2829b6d88[m
+Author: ShykanDev <awscodeapp@gmail.com>
+Date:   Wed Jul 10 12:28:45 2024 -0700
+
+    Update README.md
+
+[33mcommit 3c4928e02fff6cb12f114f8691d04f7f26f64e20[m
+Author: ShykanDev <awscodeapp@gmail.com>
+Date:   Wed Jul 10 12:28:16 2024 -0700
+
+    Initial commit

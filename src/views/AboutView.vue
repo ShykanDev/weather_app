@@ -21,6 +21,12 @@
             <AutoCompleteCard @click="handleCardClick(data.id)" v-if="query.length >= 1" :name="data.name"
               :country="data.country" :region="data.region" />
           </div>
+          <!-- Main Message  -->
+           <Transition name="fade-up">
+            <div v-if="query.length < 1 && storeWeatherSearchList.getWeatherCardSearchList.length < 1">
+              <MainMessage />
+            </div>
+          </Transition>
           <!-- List of Weather Cards -->
           <TransitionGroup name="slide-fade" tag="div">
             <div v-for="(card, id) in storeWeatherSearchList.getWeatherCardSearchList" :key="card">
@@ -44,6 +50,7 @@ import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore';
 import { SystemValuesStore } from '@/store/SystemValuesStore';
 import MainLayout from '@/layouts/MainLayout.vue';
 import { SystemColorsStore } from '@/store/SystemColorsStore';
+import MainMessage from '@/components/MainMessage.vue';
 
 const api_key = ref('d7576f684b9e4e6b88070938241707'); // API Key for the weather api
 const weatherService = new WeatherService(); // instance of the weather service class
