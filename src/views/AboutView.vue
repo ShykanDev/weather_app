@@ -23,7 +23,7 @@
           </div>
           <!-- Main Message  -->
            <Transition name="fade-up">
-            <div v-if="query.length < 1 && storeWeatherSearchList.getWeatherCardSearchList.length < 1">
+            <div class="absolute left-[10%] right-[10%] translate-x[-50%]" v-if="query.length < 1 && storeWeatherSearchList.getWeatherCardSearchList.length < 1">
               <MainMessage />
             </div>
           </Transition>
