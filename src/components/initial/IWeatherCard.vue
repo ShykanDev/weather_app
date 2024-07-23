@@ -8,7 +8,6 @@
             </div>
             <!-- container current weather -->
             <div class="flex flex-wrap items-center justify-evenly">
-                <img class="self-start w-20" src="https://openweathermap.org/img/wn/01d@2x.png">
                 <h3 class="text-[40px] font-medium">{{props.temperature}}°</h3>
                 <h3 :class="[sysColorsStore.getColorBlueOrWhiteOnTheme, sysColorsStore.getTextWhiteOrBlue]" class="pl-1 pr-1 mr-1 rounded-2xl">{{props.weatherConditionEs}}</h3>
             </div>
@@ -39,11 +38,6 @@ const props = defineProps({
             type: String,
             required: true,
             default: 'China'
-        },
-        weatherIconUrl: {
-            type: String,
-            required: true,
-            default: 'https://openweathermap.org/img/wn/01d@2x.png'
         },
         temperature: {
             type: Number,

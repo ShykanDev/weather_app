@@ -12,12 +12,17 @@ module.exports = {
       },
       keyframes: {
         toLeft: {
-          '0%': { transform: 'translateX(0%)' },
+          '0%': { transform: 'translateX(11%)' },
           '100%': { transform: 'translateX(-100%)' }
+        },
+        toRight: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(11%)' }
         }
       },
       animation: {
-        toLeft120: 'toLeft 120s linear infinite'
+        toLeft120: 'toLeft 120s linear infinite',
+        toRight120: 'toRight 120s linear infinite'
       },
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif']

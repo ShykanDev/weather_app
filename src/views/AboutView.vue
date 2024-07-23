@@ -28,21 +28,20 @@
               <MainMessage />
             </div>
           </Transition>
-          <!-- List of Weather Cards Demo -->
-          <div class="overflow-auto scrollbar-hide w-[950%]">
-            <div class="flex pt-5 pb-5 animate-toLeft120 bg-red-700 gap-3">
-              <!-- Repetir el contenido para un efecto continuo -->
-              <IWeatherCard />
-              <IWeatherCard />
-              <IWeatherCard />
-              <IWeatherCard />
-              <IWeatherCard />
-              <IWeatherCard />
-              <IWeatherCard />
-              <IWeatherCard />
-              <IWeatherCard />
-              <IWeatherCard />
-    
+          <!-- List of Weather Cards Demo to Left -->
+          <div class="overflow-auto scrollbar-hide w-[950%] ">
+            <div class="flex pt-5 pb-5 animate-toLeft120 gap-3">
+              <div v-for="data in SimulatedDataStore().getSimulatedWeatherData" :key="data.locationName"> 
+                <IWeatherCard :countryName="data.countryName" :locationName="data.locationName"  :temperature="data.temperature" :weatherConditionEs="data.weatherConditionEs" :weatherConditionEn="data.weatherConditionEn" :maxTemperature="data.maxTemperature" :minTemperature="data.minTemperature" />
+              </div>
+            </div>
+          </div>
+          <!-- List of Weather Cards Demo to Right -->
+          <div class="overflow-auto scrollbar-hide w-[918%] ">
+            <div class="flex pt-5 pb-5 animate-toRight120 gap-3">
+              <div v-for="data in SimulatedDataStore().getSimulatedWeatherData2" :key="data.locationName"> 
+                <IWeatherCard :countryName="data.countryName" :locationName="data.locationName"  :temperature="data.temperature" :weatherConditionEs="data.weatherConditionEs" :weatherConditionEn="data.weatherConditionEn" :maxTemperature="data.maxTemperature" :minTemperature="data.minTemperature" />
+              </div>
             </div>
           </div>
           <!-- List of Weather Cards -->
@@ -71,6 +70,7 @@ import MainLayout from '@/layouts/MainLayout.vue';
 import { SystemColorsStore } from '@/store/SystemColorsStore';
 import MainMessage from '@/components/MainMessage.vue';
 import IWeatherCard from '@/components/Initial/IWeatherCard.vue';
+import { SimulatedDataStore } from '@/store/SimulatedDataStore';
 
 const api_key = ref('d7576f684b9e4e6b88070938241707'); // API Key for the weather api
 const weatherService = new WeatherService(); // instance of the weather service class
