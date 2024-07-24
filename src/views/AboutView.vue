@@ -15,6 +15,7 @@
                 <LoaderCircle />
               </div>
             </Transition>
+            <!-- Loader Dots  -->
           </div>
           <!-- Autocomlete List Cards -->
           <div v-for="data in responseAutoComplete" :key="data.id">

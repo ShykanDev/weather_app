@@ -3,20 +3,20 @@
         <div :class="`${sysColorsStore.getCardWeatherBackgroundWhiteOrBlack} ${sysColorsStore.getTextWhiteOrBlack} ${sysColorsStore.getBackgroundShadowAndBorder}`" class="relative w-[80vw] pt-4 overflow-auto transition-colors duration-150 ease-out rounded-2xl font-poppins ">
             <!-- container city name and country -->
             <div class="flex justify-around">
-                <h2 :class="sysColorsStore.getTextWhiteOrBlack" class="text-lg font-medium underline cursor-pointer">{{ props.locationName }}</h2>
-                <h3>{{ props.countryName }}</h3>
+                <h2 :class="sysColorsStore.getTextWhiteOrBlack" class=" md:text-3xl font-medium underline cursor-pointer">{{ props.locationName }}</h2>
+                <h3 class="md:text-3xl">{{ props.countryName }}</h3>
             </div>
             <!-- container current weather -->
             <div class="flex flex-wrap items-center justify-evenly">
                 <h3 class="text-[40px] font-medium">{{props.temperature}}°</h3>
-                <h3 :class="[sysColorsStore.getColorBlueOrWhiteOnTheme, sysColorsStore.getTextWhiteOrBlue]" class="pl-1 pr-1 mr-1 rounded-2xl">{{props.weatherConditionEs}}</h3>
+                <h3 :class="[sysColorsStore.getColorBlueOrWhiteOnTheme, sysColorsStore.getTextWhiteOrBlue]" class="pl-1 pr-1 mr-1 rounded-2xl md:text-xl">{{props.weatherConditionEs}}</h3>
             </div>
             <!-- container max and min -->
             <div class="relative flex flex-wrap items-center justify-center pr-3">
-                <h3>Max: 30°</h3><v-icon scale="1.3" name="io-trending-up" />
+                <h3 class="md:text-lg">Max {{props.maxTemperature}}°</h3><v-icon scale="1.3" name="io-trending-up" />
                 <v-icon scale="1.3" name="la-grip-lines-vertical-solid" />
-                <h3><v-icon scale="1.3" name="io-trending-down" />Min: 20°</h3>
-                <div  class="absolute bottom-0 right-0 z-10"> <DotMenu /> </div>
+                <h3 class="md:text-lg">
+                <v-icon scale="1.3" name="io-trending-down" />Min {{props.minTemperature}}°</h3>
             </div>
         </div>
     </div>
