@@ -9,7 +9,7 @@
             <!-- container current weather -->
             <div class="flex flex-wrap items-center justify-evenly">
                 <h3 class="text-[40px] font-medium">{{props.temperature}}°</h3>
-                <h3 :class="[sysColorsStore.getColorBlueOrWhiteOnTheme, sysColorsStore.getTextWhiteOrBlue]" class="pl-1 pr-1 mr-1 rounded-2xl md:text-xl">{{props.weatherConditionEs}}</h3>
+                <h3 :class="[sysColorsStore.getColorBlueOrWhiteOnTheme, sysColorsStore.getTextWhiteOrBlue]" class="pl-1 pr-1 mr-1 rounded-2xl md:text-xl">{{ translatedWeatherCondition}}</h3>
             </div>
             <!-- container max and min -->
             <div class="relative flex flex-wrap items-center justify-center pr-3">
@@ -24,8 +24,8 @@
 
 <script setup lang="ts">
 import { SystemColorsStore } from '@/store/SystemColorsStore';
-import DotMenu from '../animations/DotMenu.vue';
-import { defineProps } from 'vue';
+import { SystemValuesStore } from '@/store/SystemValuesStore';
+import { computed, defineProps } from 'vue';
 
 const sysColorsStore = SystemColorsStore();
 const props = defineProps({
@@ -67,6 +67,7 @@ const props = defineProps({
         }
 })        
 
+const translatedWeatherCondition = computed(() =>SystemValuesStore().getCurrentLang === 'es' ? props.weatherConditionEs : props.weatherConditionEn);
 </script>
 
 <style scoped>

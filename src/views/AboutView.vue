@@ -11,11 +11,17 @@
               type="text" :placeholder="$t('mainView.placeholder')">
             <!-- Loader Circle -->
             <Transition name="fade-up">
-              <div v-if="isLoading" class="absolute top-1 right-[10%] ">
+              <div v-if="isTyping" class="absolute top-1 right-[5%] ">
                 <LoaderCircle />
               </div>
             </Transition>
             <!-- Loader Dots  -->
+            <Transition name="fade-up">
+              <div v-if="isLoading" class="absolute bottom-1 right-[9%] ">
+                <LoaderDots/>
+              </div>
+            </Transition>
+
           </div>
           <!-- Autocomlete List Cards -->
           <div v-for="data in responseAutoComplete" :key="data.id">
@@ -24,7 +30,7 @@
           </div>
           <Transition name="fade-up">
           <!-- Demo Weather Cards  -->
-          <div class="fixed top-[20%] left-0 right-0"  v-if="query.length < 1 && storeWeatherSearchList.getWeatherCardSearchList.length < 1">
+          <div class="mt-7" v-if="query.length < 1 && storeWeatherSearchList.getWeatherCardSearchList.length < 1">
           <!-- List of Weather Cards Demo to Left -->
           <div class="overflow-auto scrollbar-hide w-[950%] pb-4">
             <div class="flex animate-toLeft120 gap-3">
@@ -67,9 +73,9 @@ import { WeatherCardSearchListStore } from '@/store/WeatherCardSearchListStore';
 import { SystemValuesStore } from '@/store/SystemValuesStore';
 import MainLayout from '@/layouts/MainLayout.vue';
 import { SystemColorsStore } from '@/store/SystemColorsStore';
-import MainMessage from '@/components/MainMessage.vue';
 import IWeatherCard from '@/components/Initial/IWeatherCard.vue';
 import { SimulatedDataStore } from '@/store/SimulatedDataStore';
+import LoaderDots from '@/components/animations/LoaderDots.vue';
 
 const api_key = ref('d7576f684b9e4e6b88070938241707'); // API Key for the weather api
 const weatherService = new WeatherService(); // instance of the weather service class
@@ -85,9 +91,12 @@ let responseAutoComplete: Ref<Array<IAutocompleteCountry>> = ref([]); // list of
 
 const storeSysValues = SystemValuesStore();
 
+let isTyping = ref(false); // variable to show or hide loader when user is typing
+
 // When the user types in the search bar it will run the fetchAutocomplete function to get the results from the api and display them in the card component
 const handleQuery = (): void => {
   if (query.value != "") {
+    isTyping.value = true;
     storeSysValues.setIsTyping(true);
     clearTimeout(timeout)
     timeout = setTimeout(async () => {
@@ -95,6 +104,7 @@ const handleQuery = (): void => {
       const finalData = weatherService.getAutocomplete();
       (query.value.length >= 1) ? responseAutoComplete.value = finalData.value : responseAutoComplete.value = []; // Clear the responseAutoComplete value when a new card is clicked
       storeSysValues.setIsTyping(false);
+    isTyping.value = false;
     }, 400)
   }
 }
